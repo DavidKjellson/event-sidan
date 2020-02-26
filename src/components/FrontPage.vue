@@ -6,7 +6,7 @@
 
       <datalist id="my-list-id">
         <option>Manual Option</option>
-        <option v-for="city in cities" :key="city.route">{{ city.name }}</option>
+        <option v-for="city in cities" :key="city.route" @click="enterCityPage">{{ city.name }}</option>
       </datalist>
     </div>
   </div>
@@ -22,6 +22,9 @@ export default {
         { name: "Malmö", route: "malmö" }
       ]
     };
+  },
+  methods: {
+    enterCityPage() {}
   }
 };
 </script>
@@ -29,8 +32,8 @@ export default {
 <style scoped>
 #citylist {
   width: 50%;
-  height: 70px;
-  font-size: 3rem;
+  height: 60px;
+  font-size: 1.5rem;
   display: inline-block;
   text-align: center;
   margin-top: 30%;
