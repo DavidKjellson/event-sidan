@@ -62,7 +62,7 @@
       data-theme="pure"
     >Gothenburg, Sweden</a>
 
-    <div class="container shadow p-3 mb-5 bg-white rounded" style="margin-bottom: 100px;">
+    <div class="container-sm shadow p-3 mb-5 bg-white rounded" style="margin-bottom: 100px;">
       <div class="row">
         <div class="col">
           <div class="card shadow-sm" style="width: 18rem;">
