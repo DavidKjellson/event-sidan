@@ -8,23 +8,23 @@ import Cities from '../components/Cities'
 Vue.use(VueRouter)
 
 const routes = [{
-  path: '/',
-  name: 'FrontPage',
-  component: FrontPage,
-  meta: {
-    title: 'Eventsidan'
+    path: '/',
+    name: 'FrontPage',
+    component: FrontPage,
+    meta: {
+      title: 'Eventsidan'
+    },
   },
-},
-// {
-//   path: '/cities',
-//   name: 'HelloWorld',
-//   component: HelloWorld
-// },
-{
-  path: '/cities',
-  name: 'Cities',
-  component: Cities
-}
+  // {
+  //   path: '/cities',
+  //   name: 'HelloWorld',
+  //   component: HelloWorld
+  // },
+  {
+    path: '/cities',
+    name: 'Cities',
+    component: Cities
+  }
 ]
 
 const router = new VueRouter({
