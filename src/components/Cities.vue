@@ -32,13 +32,13 @@
           </div>
         </div>
       </div>
-      <div class="navbar navbar-dark bg-transparent">
+      <div class="navbar navbar-light bg-transparent">
         <div class="container d-flex justify-content-between">
           <a href="#" class="navbar-brand d-flex align-items-center">
             <h1 class="text-dark" id="name">Eventsidan</h1>
           </a>
           <button
-            class="navbar-toggler bg-success"
+            class="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarHeader"
