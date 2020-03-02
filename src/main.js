@@ -18,7 +18,7 @@ Vue.use(IconsPlugin)
 
 Vue.config.productionTip = false
 Vue.filter('yesno', function (value) {
-  return value ? 'Ja' : 'Nej'
+  return value ? '✔️' : '❌'
 })
 
 router.beforeEach((to, from, next) => {

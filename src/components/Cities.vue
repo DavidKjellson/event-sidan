@@ -11,6 +11,7 @@
                   type="search"
                   placeholder="Sök event"
                   aria-label="Search"
+                  v-model="search"
                 />
                 <button class="btn bg-success text-white my-2 my-sm-0" type="submit">Sök</button>
               </form>
@@ -68,7 +69,7 @@
 
     <div class="container p-3 mb-5 bg-white rounded" style="margin-bottom: 100px;">
       <div class="row">
-        <div class="col" :key="event.name" v-for="event in events">
+        <div class="col" :key="event.name" v-for="event in filterSearch">
           <div class="card shadow" style="width: 18rem;">
             <img :src="event.img" class="card-img-top" alt="..." height="190px" width="100%" />
             <div class="card-body">
@@ -173,7 +174,8 @@ export default {
   name: "Cities",
   data() {
     return {
-      events: null
+      events: [],
+      search: ""
     };
   },
   props: {
@@ -186,6 +188,13 @@ export default {
       .then(result => {
         this.events = result;
       });
+  },
+  computed: {
+    filterSearch() {
+      return this.events.filter(event => {
+        return event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
+      });
+    }
   }
 };
 </script>
