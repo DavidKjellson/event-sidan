@@ -34,9 +34,9 @@
       </div>
       <div class="navbar navbar-light bg-transparent">
         <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
+          <router-link to="/" class="navbar-brand d-flex align-items-center">
             <h1 class="text-dark" id="name">Eventsidan</h1>
-          </a>
+          </router-link>
           <button
             class="navbar-toggler"
             type="button"
@@ -83,11 +83,11 @@
             <div class="card-body">
               <div>
                 <b-button
-                  v-b-modal.modal-center
+                  v-b-modal="'modal-' + event.name"
                   class="btn bg-success text-white my-2 my-sm-0"
                 >Mer information</b-button>
 
-                <b-modal id="modal-center" size="xl" centered :title="event.name">
+                <b-modal :id="'modal-' + event.name" size="xl" centered :title="event.name">
                   <div class="container event-modal">
                     <div class="row">
                       <div class="col-4">
