@@ -9,7 +9,7 @@
                 <input
                   class="form-control mr-sm-2"
                   type="search"
-                  placeholder="Sök stad"
+                  placeholder="Sök event"
                   aria-label="Search"
                 />
                 <button class="btn bg-success text-white my-2 my-sm-0" type="submit">Sök</button>
