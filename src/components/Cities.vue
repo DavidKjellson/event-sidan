@@ -35,7 +35,7 @@
       <div class="navbar navbar-dark bg-transparent">
         <div class="container d-flex justify-content-between">
           <a href="#" class="navbar-brand d-flex align-items-center">
-            <h1 class="text-dark">Eventsidan</h1>
+            <h1 class="text-dark" id="name">Eventsidan</h1>
           </a>
           <button
             class="navbar-toggler bg-success"
@@ -183,5 +183,10 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 5px;
   padding-top: 120px;
+}
+
+#name {
+  font-family: "Abel", sans-serif;
+  font-size: 30px;
 }
 </style>
