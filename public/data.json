@@ -1,0 +1,34 @@
+[{
+    "name": "Liseberg",
+    "img": "https://i.imgur.com/hjuy6r8.jpg",
+    "description": "Nordens största nöjespark! Ett måste för barnfamiljen.",
+    "openinghours": "11.00 - 23.00",
+    "entrance": 110,
+    "children": true,
+    "food": true,
+    "accommodation": true,
+    "parking": true
+  },
+  {
+    "name": "Universeum",
+    "img": "https://i.imgur.com/bL3I9mO.jpg",
+    "description": "Universeum är en plats där kunskap leks fram.",
+    "openinghours": "10.00 - 18.00",
+    "entrance": 150,
+    "children": true,
+    "food": true,
+    "accommodation": false,
+    "parking": true
+  },
+  {
+    "name": "Göteborgs Konstmuseum",
+    "img": "https://i.imgur.com/kcwBPW8.jpg",
+    "description": "Här finns en internationellt uppmärksammad samling.",
+    "openinghours": "11.00 - 18.00",
+    "entrance": 60,
+    "children": true,
+    "food": true,
+    "accommodation": false,
+    "parking": true
+  }
+]
