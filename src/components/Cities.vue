@@ -76,7 +76,36 @@
               <li class="list-group-item">Barnanpassat: Ja</li>
             </ul>
             <div class="card-body">
-              <button class="btn bg-success text-white my-2 my-sm-0" type="submit">Mer information</button>
+              <div>
+                <b-button
+                  v-b-modal.modal-center
+                  class="btn bg-success text-white my-2 my-sm-0"
+                >Mer information</b-button>
+
+                <b-modal id="modal-center" size="xl" centered title="Liseberg">
+                  <div class="container event-modal">
+                    <div class="row">
+                      <div class="col-4">
+                        <img src="../assets/img/liseberg.jpg" alt="..." />
+                      </div>
+                      <div class="col-4">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">Öppetider: 11.00 - 23.00</li>
+                          <li class="list-group-item">Inträde: 110kr</li>
+                          <li class="list-group-item">Barnanpassat: Ja</li>
+                          <li class="list-group-item">Mat & Dryck: Ja</li>
+                          <li class="list-group-item">Boende: Ja</li>
+                          <li class="list-group-item">Parkering: Ja</li>
+                        </ul>
+                      </div>
+                      <div class="col-4">
+                        <p>Liseberg är en park för alla. Sedan 1923 har vi fått miljontals människor att mötas och trivas tillsammans. Hos oss väntar äventyr, musik, spel, god mat och vackra trädgårdar under tre säsonger – sommar, Halloween och jul.</p>
+                      </div>
+                    </div>
+                    <div class="row"></div>
+                  </div>
+                </b-modal>
+              </div>
             </div>
           </div>
         </div>
@@ -156,5 +185,12 @@ h3 {
 
 .highlight {
   display: none;
+}
+.event-modal img {
+  width: 300px;
+  height: 250px;
+}
+.event-modal {
+  height: 50vh;
 }
 </style>
