@@ -51,9 +51,13 @@
         </div>
       </div>
     </header>
-    <!-- COntainer -->
-    <h2 class="text-center">Göteborg</h2>
 
+    <!-- HERO WITH IMG -->
+    <section class="hero">
+      <h3>Göteborg</h3>
+    </section>
+
+    <!-- CONTAINER FOR EVENT-CARDS -->
     <a
       class="weatherwidget-io"
       href="https://forecast7.com/sv/57d7111d97/gothenburg/"
@@ -62,10 +66,10 @@
       data-theme="pure"
     >Gothenburg, Sweden</a>
 
-    <div class="container-sm shadow p-3 mb-5 bg-white rounded" style="margin-bottom: 100px;">
+    <div class="container p-3 mb-5 bg-white rounded" style="margin-bottom: 100px;">
       <div class="row">
         <div class="col">
-          <div class="card shadow-sm" style="width: 18rem;">
+          <div class="card shadow" style="width: 18rem;">
             <img src="../assets/img/liseberg.jpg" class="card-img-top" alt="..." />
             <div class="card-body">
               <p class="card-text">Nordens största nöjespark! Ett måste för barnfamiljen.</p>
@@ -81,7 +85,7 @@
           </div>
         </div>
         <div class="col">
-          <div class="card" style="width: 18rem;">
+          <div class="card shadow" style="width: 18rem;">
             <img
               src="../assets/img/universeum.jpg"
               class="card-img-top"
@@ -103,7 +107,7 @@
           </div>
         </div>
         <div class="col">
-          <div class="card" style="width: 18rem;">
+          <div class="card shadow" style="width: 18rem;">
             <img src="../assets/img/gbgmuseum.jpg" class="card-img-top" alt="..." />
             <div class="card-body">
               <p class="card-text">Här finns en internationellt uppmärksammad samling</p>
@@ -156,5 +160,28 @@ h3 {
 
 .highlight {
   display: none;
+}
+
+.card {
+  justify-content: center;
+}
+
+.hero {
+  background-image: url(../assets/img/goteborg.jpg);
+  min-height: 300px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  color: white;
+}
+
+.hero h3 {
+  color: white;
+  font-size: 48px;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  padding-top: 120px;
 }
 </style>
