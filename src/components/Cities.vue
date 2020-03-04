@@ -88,7 +88,13 @@
                   class="btn bg-success text-white my-2 my-sm-0"
                 >Mer information</b-button>
 
-                <b-modal :id="'modal-' + event.name" size="xl" centered :title="event.name">
+                <b-modal
+                  :id="'modal-' + event.name"
+                  size="xl"
+                  centered
+                  :title="event.name"
+                  hide-footer="true"
+                >
                   <div class="container event-modal">
                     <div class="row">
                       <div class="col-4">
