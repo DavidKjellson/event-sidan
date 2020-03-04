@@ -97,7 +97,7 @@
                 >
                   <div class="container event-modal">
                     <div class="row">
-                      <div class="col-4">
+                      <div class="col-sm-4">
                         <iframe
                           width="350"
                           height="350"
@@ -108,7 +108,7 @@
                         ></iframe>
                         <!-- <img src="../assets/img/liseberg.jpg" alt="..." /> -->
                       </div>
-                      <div class="col-4">
+                      <div class="col-sm-4">
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item">Öppetider: {{event.openinghours}}</li>
                           <li class="list-group-item">Inträde: {{event.entrance}} SEK</li>
@@ -118,7 +118,7 @@
                           <li class="list-group-item">Parkering: {{event.parking | yesno}}</li>
                         </ul>
                       </div>
-                      <div class="col-4">
+                      <div class="col-sm-4">
                         <p>{{event.descriptionLong}}</p>
                       </div>
                     </div>
@@ -234,7 +234,8 @@ h3 {
   height: 250px;
 }
 .event-modal {
-  height: 50vh;
+  /* height: 50vh; */
+  margin: auto;
 }
 .card {
   margin: auto;
@@ -262,5 +263,11 @@ h3 {
 #name {
   font-family: "Abel", sans-serif;
   font-size: 30px;
+}
+@media screen and (max-width: 992px) {
+  iframe {
+    width: 80vw;
+    height: 40vh;
+  }
 }
 </style>
