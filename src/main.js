@@ -17,6 +17,9 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 Vue.config.productionTip = false
+Vue.filter('yesno', function (value) {
+  return value ? '✔️' : '❌'
+})
 
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title

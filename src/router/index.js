@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import FrontPage from '../components/FrontPage.vue'
-// import HelloWorld from '../components/HelloWorld.vue'
 
 import Cities from '../components/Cities'
 
@@ -15,15 +14,13 @@ const routes = [{
       title: 'Eventsidan'
     },
   },
-  // {
-  //   path: '/cities',
-  //   name: 'HelloWorld',
-  //   component: HelloWorld
-  // },
   {
     path: '/cities',
     name: 'Cities',
-    component: Cities
+    component: Cities,
+    meta: {
+      title: 'Göteborg - Eventsidan' // Temporär lösning //Dav
+    }
   }
 ]
 

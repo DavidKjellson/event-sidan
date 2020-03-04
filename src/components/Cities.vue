@@ -11,6 +11,7 @@
                   type="search"
                   placeholder="Sök event"
                   aria-label="Search"
+                  v-model="search"
                 />
                 <button class="btn bg-success text-white my-2 my-sm-0" type="submit">Sök</button>
               </form>
@@ -32,13 +33,13 @@
           </div>
         </div>
       </div>
-      <div class="navbar navbar-dark bg-transparent">
+      <div class="navbar navbar-light bg-transparent">
         <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
+          <router-link to="/" class="navbar-brand d-flex align-items-center">
             <h1 class="text-dark" id="name">Eventsidan</h1>
-          </a>
+          </router-link>
           <button
-            class="navbar-toggler bg-success"
+            class="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarHeader"
@@ -67,26 +68,27 @@
     >Gothenburg, Sweden</a>
 
     <div class="container p-3 mb-5 bg-white rounded" style="margin-bottom: 100px;">
-      <div class="row">
-        <div class="col">
+      <div class="row row-cols-sm-3">
+        <div class="col" :key="event.name" v-for="event in filterSearch">
           <div class="card shadow" style="width: 18rem;">
-            <img src="../assets/img/liseberg.jpg" class="card-img-top" alt="..." />
+            <img :src="event.img" class="card-img-top" alt="..." height="190px" width="100%" />
             <div class="card-body">
-              <p class="card-text">Nordens största nöjespark! Ett måste för barnfamiljen.</p>
+              <h5 class="card-text">{{event.name}}</h5>
+              <p class="card-text">{{event.description}}</p>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Öppetider: 11.00 - 23.00</li>
-              <li class="list-group-item">Inträde: 110kr</li>
-              <li class="list-group-item">Barnanpassat: Ja</li>
+              <li class="list-group-item">Öppetider: {{event.openinghours}}</li>
+              <li class="list-group-item">Inträde: {{event.entrance}}:-</li>
+              <li class="list-group-item">Barnanpassat: {{event.children | yesno}}</li>
             </ul>
             <div class="card-body">
               <div>
                 <b-button
-                  v-b-modal.modal-center
+                  v-b-modal="'modal-' + event.name"
                   class="btn bg-success text-white my-2 my-sm-0"
                 >Mer information</b-button>
 
-                <b-modal id="modal-center" size="xl" centered title="Liseberg">
+                <b-modal :id="'modal-' + event.name" size="xl" centered :title="event.name">
                   <div class="container event-modal">
                     <div class="row">
                       <div class="col-4">
@@ -102,16 +104,16 @@
                       </div>
                       <div class="col-4">
                         <ul class="list-group list-group-flush">
-                          <li class="list-group-item">Öppetider: 11.00 - 23.00</li>
-                          <li class="list-group-item">Inträde: 110kr</li>
-                          <li class="list-group-item">Barnanpassat: Ja</li>
-                          <li class="list-group-item">Mat & Dryck: Ja</li>
-                          <li class="list-group-item">Boende: Ja</li>
-                          <li class="list-group-item">Parkering: Ja</li>
+                          <li class="list-group-item">Öppetider: {{event.openinghours}}</li>
+                          <li class="list-group-item">Inträde: {{event.entrance}}</li>
+                          <li class="list-group-item">Barnanpassat: {{event.children | yesno}}</li>
+                          <li class="list-group-item">Mat & Dryck: {{event.food | yesno}}</li>
+                          <li class="list-group-item">Boende: {{event.accommodation | yesno}}</li>
+                          <li class="list-group-item">Parkering: {{event.parking | yesno}}</li>
                         </ul>
                       </div>
                       <div class="col-4">
-                        <p>Liseberg är en park för alla. Sedan 1923 har vi fått miljontals människor att mötas och trivas tillsammans. Hos oss väntar äventyr, musik, spel, god mat och vackra trädgårdar under tre säsonger – sommar, Halloween och jul.</p>
+                        <p>{{event.description}}</p>
                       </div>
                     </div>
                     <div class="row"></div>
@@ -121,7 +123,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <!-- <div class="col">
           <div class="card shadow" style="width: 18rem;">
             <img
               src="../assets/img/universeum.jpg"
@@ -158,7 +160,7 @@
               <button class="btn bg-success text-white my-2 my-sm-0" type="submit">Mer information</button>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
@@ -180,12 +182,30 @@ import secret from "../secret";
 
 export default {
   name: "Cities",
+  data() {
+    return {
+      events: [],
+      search: "",
+      API_KEY: secret.API_KEY
+    };
+  },
   props: {
     header: String,
     description: String
   },
-  data() {
-    return { API_KEY: secret.API_KEY };
+  created() {
+    fetch("/data.json")
+      .then(response => response.json())
+      .then(result => {
+        this.events = result;
+      });
+  },
+  computed: {
+    filterSearch() {
+      return this.events.filter(event => {
+        return event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
+      });
+    }
   }
 };
 </script>
@@ -211,7 +231,7 @@ h3 {
   height: 50vh;
 }
 .card {
-  justify-content: center;
+  margin: auto;
 }
 
 .hero {
