@@ -78,7 +78,7 @@
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Öppetider: {{event.openinghours}}</li>
-              <li class="list-group-item">Inträde: {{event.entrance}}:-</li>
+              <li class="list-group-item">Inträde: {{event.entrance}} SEK</li>
               <li class="list-group-item">Barnanpassat: {{event.children | yesno}}</li>
             </ul>
             <div class="card-body">
@@ -97,7 +97,7 @@
                           height="350"
                           frameborder="0"
                           style="border:0"
-                          :src="'https://www.google.com/maps/embed/v1/place?q=place_id:ChIJgejW6p7zT0YRT0iKc6ej8Bg&key=' + API_KEY"
+                          :src="'https://www.google.com/maps/embed/v1/place?q=place_id:' + event.maplocation + '&key=' + API_KEY"
                           allowfullscreen
                         ></iframe>
                         <!-- <img src="../assets/img/liseberg.jpg" alt="..." /> -->
@@ -105,7 +105,7 @@
                       <div class="col-4">
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item">Öppetider: {{event.openinghours}}</li>
-                          <li class="list-group-item">Inträde: {{event.entrance}}</li>
+                          <li class="list-group-item">Inträde: {{event.entrance}} SEK</li>
                           <li class="list-group-item">Barnanpassat: {{event.children | yesno}}</li>
                           <li class="list-group-item">Mat & Dryck: {{event.food | yesno}}</li>
                           <li class="list-group-item">Boende: {{event.accommodation | yesno}}</li>

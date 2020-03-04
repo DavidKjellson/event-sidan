@@ -7,7 +7,8 @@
     "children": true,
     "food": true,
     "accommodation": true,
-    "parking": true
+    "parking": true,
+    "maplocation": "ChIJgejW6p7zT0YRT0iKc6ej8Bg"
   },
   {
     "name": "Universeum",
@@ -18,7 +19,8 @@
     "children": true,
     "food": true,
     "accommodation": false,
-    "parking": true
+    "parking": true,
+    "maplocation": "ChIJm62RB57zT0YR1CkYSAcMqzA"
   },
   {
     "name": "Göteborgs Konstmuseum",
@@ -29,6 +31,7 @@
     "children": true,
     "food": true,
     "accommodation": false,
-    "parking": true
+    "parking": true,
+    "maplocation": "ChIJU-MapXbzT0YRxQJjLdGFUkg"
   }
 ]
