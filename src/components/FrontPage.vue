@@ -1,6 +1,6 @@
 <template>
   <div id="frontpage">
-    <h1>Eventsidan</h1>
+    <h1 id="compname">Activityfy</h1>
     <div class="container-sm">
       <div class="row align-items-center" id="buttonLinks" v-for="city in cities" :key="city.route">
         <div class="col align-self-center">
@@ -48,5 +48,9 @@ button {
 }
 #buttonLinks {
   margin-top: 5%;
+}
+
+#compname {
+  font-family: "Abel", sans-serif;
 }
 </style>

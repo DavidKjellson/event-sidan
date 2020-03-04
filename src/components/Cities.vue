@@ -36,7 +36,7 @@
       <div class="navbar navbar-light bg-transparent">
         <div class="container d-flex justify-content-between">
           <router-link to="/" class="navbar-brand d-flex align-items-center">
-            <h1 class="text-dark" id="name">Eventsidan</h1>
+            <h1 class="text-dark" id="name">Activityfy</h1>
           </router-link>
           <button
             class="navbar-toggler"
@@ -119,7 +119,7 @@
                         </ul>
                       </div>
                       <div class="col-4">
-                        <p>{{event.description}}</p>
+                        <p>{{event.descriptionLong}}</p>
                       </div>
                     </div>
                     <div class="row"></div>

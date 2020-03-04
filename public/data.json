@@ -1,7 +1,9 @@
-[{
+[
+  {
     "name": "Liseberg",
     "img": "https://i.imgur.com/hjuy6r8.jpg",
     "description": "Nordens största nöjespark! Ett måste för barnfamiljen.",
+    "descriptionLong": "I Nordens största nöjespark är mycket på låtsas men upplevelserna på riktigt. Här väntar allt från härligt magkittlande attraktioner och musik till gastkramande Halloween-firande och miljoner juleljus under Jul på Liseberg. Välkommen till en upplevelse att minnas!",
     "openinghours": "11.00 - 23.00",
     "entrance": 110,
     "children": true,
@@ -14,6 +16,7 @@
     "name": "Universeum",
     "img": "https://i.imgur.com/bL3I9mO.jpg",
     "description": "Universeum är en plats där kunskap leks fram.",
+    "descriptionLong": "På Universeum är varje dag ett äventyr. I vårt stora hus utforskar du naturvetenskap och teknik. Välkommen till vår värld!",
     "openinghours": "10.00 - 18.00",
     "entrance": 150,
     "children": true,
@@ -26,6 +29,7 @@
     "name": "Göteborgs Konstmuseum",
     "img": "https://i.imgur.com/kcwBPW8.jpg",
     "description": "Här finns en internationellt uppmärksammad samling.",
+    "descriptionLong": "På Göteborgs konstmuseum finns en av norra Europas främsta konstsamlingar. Här samsas verk av mästare som Rembrandt, Picasso och van Gogh med samtida konstnärer som Charlotte Gyllenhammar, Lina Selander och Cajsa von Zeipel. Välkommen att vandra genom salarna från renässans till nutid för att lära känna dina favoriter eller upptäcka nya!",
     "openinghours": "11.00 - 18.00",
     "entrance": 60,
     "children": true,
