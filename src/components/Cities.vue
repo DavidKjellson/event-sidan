@@ -83,6 +83,7 @@
             </ul>
             <div class="card-body">
               <div>
+                <!-- Modal -->
                 <b-button
                   v-b-modal="'modal-' + event.name"
                   class="btn bg-success text-white my-2 my-sm-0"
@@ -97,7 +98,7 @@
                 >
                   <div class="container event-modal">
                     <div class="row">
-                      <div class="col-sm-4">
+                      <div class="col">
                         <iframe
                           width="350"
                           height="350"
@@ -106,9 +107,8 @@
                           :src="'https://www.google.com/maps/embed/v1/place?q=place_id:' + event.maplocation + '&key=' + API_KEY"
                           allowfullscreen
                         ></iframe>
-                        <!-- <img src="../assets/img/liseberg.jpg" alt="..." /> -->
                       </div>
-                      <div class="col-sm-4">
+                      <div class="col">
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item">Öppetider: {{event.openinghours}}</li>
                           <li class="list-group-item">Inträde: {{event.entrance}} SEK</li>
@@ -118,7 +118,7 @@
                           <li class="list-group-item">Parkering: {{event.parking | yesno}}</li>
                         </ul>
                       </div>
-                      <div class="col-sm-4">
+                      <div class="col">
                         <p>{{event.descriptionLong}}</p>
                       </div>
                     </div>
@@ -129,44 +129,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col">
-          <div class="card shadow" style="width: 18rem;">
-            <img
-              src="../assets/img/universeum.jpg"
-              class="card-img-top"
-              alt="..."
-              height="190px"
-              width="100%"
-            />
-            <div class="card-body">
-              <p class="card-text">Universeum är en plats där kunskap leks fram.</p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Öppetider: 10.00 - 18.00</li>
-              <li class="list-group-item">Inträde: 150kr</li>
-              <li class="list-group-item">Barnanpassat: Ja</li>
-            </ul>
-            <div class="card-body">
-              <button class="btn bg-success text-white my-2 my-sm-0" type="submit">Mer information</button>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow" style="width: 18rem;">
-            <img src="../assets/img/gbgmuseum.jpg" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <p class="card-text">Här finns en internationellt uppmärksammad samling</p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Öppetider: 11.00 - 18.00</li>
-              <li class="list-group-item">Inträde: 60kr</li>
-              <li class="list-group-item">Barnanpassat: Ja</li>
-            </ul>
-            <div class="card-body">
-              <button class="btn bg-success text-white my-2 my-sm-0" type="submit">Mer information</button>
-            </div>
-          </div>
-        </div>-->
       </div>
     </div>
   </div>
@@ -266,8 +228,9 @@ h3 {
 }
 @media screen and (max-width: 992px) {
   iframe {
-    width: 80vw;
+    width: 75vw;
     height: 40vh;
+    margin: auto;
   }
 }
 </style>
