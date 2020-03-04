@@ -68,7 +68,7 @@
     >Gothenburg, Sweden</a>
 
     <div class="container p-3 mb-5 bg-white rounded" style="margin-bottom: 100px;">
-      <div class="row">
+      <div class="row row-cols-sm-3">
         <div class="col" :key="event.name" v-for="event in filterSearch">
           <div class="card shadow" style="width: 18rem;">
             <img :src="event.img" class="card-img-top" alt="..." height="190px" width="100%" />
@@ -220,7 +220,7 @@ h3 {
   height: 50vh;
 }
 .card {
-  justify-content: center;
+  margin: auto;
 }
 
 .hero {
