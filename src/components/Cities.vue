@@ -93,7 +93,7 @@
                   size="xl"
                   centered
                   :title="event.name"
-                  hide-footer="true"
+                  :hide-footer="true"
                 >
                   <div class="container event-modal">
                     <div class="row">

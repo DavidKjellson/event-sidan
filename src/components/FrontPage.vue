@@ -18,11 +18,7 @@ export default {
   data() {
     return {
       chosenCity: null,
-      cities: [
-        { name: "Göteborg", route: "cities" },
-        { name: "Stockholm", route: "stockholm" },
-        { name: "Malmö", route: "malmö" }
-      ]
+      cities: [{ name: "Göteborg", route: "cities" }]
     };
   }
 };
