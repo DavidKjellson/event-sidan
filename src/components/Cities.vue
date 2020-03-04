@@ -90,7 +90,15 @@
                   <div class="container event-modal">
                     <div class="row">
                       <div class="col-4">
-                        <img src="../assets/img/liseberg.jpg" alt="..." />
+                        <iframe
+                          width="350"
+                          height="350"
+                          frameborder="0"
+                          style="border:0"
+                          :src="'https://www.google.com/maps/embed/v1/place?q=place_id:ChIJgejW6p7zT0YRT0iKc6ej8Bg&key=' + API_KEY"
+                          allowfullscreen
+                        ></iframe>
+                        <!-- <img src="../assets/img/liseberg.jpg" alt="..." /> -->
                       </div>
                       <div class="col-4">
                         <ul class="list-group list-group-flush">
@@ -157,6 +165,8 @@
 </template>
 
 <script>
+import secret from "../secret";
+
 !(function(d, s, id) {
   var js,
     fjs = d.getElementsByTagName(s)[0];
@@ -173,6 +183,9 @@ export default {
   props: {
     header: String,
     description: String
+  },
+  data() {
+    return { API_KEY: secret.API_KEY };
   }
 };
 </script>
