@@ -11,7 +11,7 @@ const routes = [{
     name: 'FrontPage',
     component: FrontPage,
     meta: {
-      title: 'Eventsidan'
+      title: 'Activityfy'
     },
   },
   {
@@ -19,7 +19,7 @@ const routes = [{
     name: 'Cities',
     component: Cities,
     meta: {
-      title: 'Göteborg - Eventsidan' // Temporär lösning //Dav
+      title: 'Göteborg - Activityfy' // Temporär lösning //Dav
     }
   }
 ]
