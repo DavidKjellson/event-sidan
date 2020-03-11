@@ -19,7 +19,7 @@ const routes = [{
     name: 'Cities',
     component: Cities,
     meta: {
-      title: 'Göteborg - Activityfy' // Temporär lösning //Dav
+      title: 'Göteborg - Activityfy'
     }
   }
 ]

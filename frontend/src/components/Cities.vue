@@ -74,7 +74,13 @@
       <div class="row ml-3">
         <div class="col" :key="event.name" v-for="event in filterSearch">
           <div class="card shadow mt-3" style="width: 18rem;">
-            <img :src="event.img" class="card-img-top" alt="..." height="190px" width="100%" />
+            <img
+              :src="'/img/' + event.img"
+              class="card-img-top"
+              alt="..."
+              height="190px"
+              width="100%"
+            />
             <div class="card-body">
               <h5 class="card-text">{{event.name}}</h5>
               <p class="card-text">{{event.descriptionshort}}</p>
@@ -179,7 +185,7 @@ export default {
   },
   computed: {
     filterSearch() {
-      return this.events.gothenburg.events.filter(event => {
+      return this.events[this.$route.params.city].events.filter(event => {
         return event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
       });
     }
