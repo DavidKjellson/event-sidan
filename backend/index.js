@@ -8,6 +8,8 @@ app.use(cors())
 
 let database
 
+
+
 sqlite.open('events.sqlite')
   .then(database_ => {
     database = database_
@@ -18,29 +20,33 @@ app.get('/', (request, response) => {
     .then(events => {
       database.all('SELECT * FROM cities')
         .then(cities => {
-          response.send(cities)
+          const o = {}
+
+          cities.forEach(city => {
+            if (o[city.location]) {
+              city.events = []
+              o[city.location] = city
+            } else {
+              city.events = []
+              o[city.location] = city
+            }
+          })
+
+          events.forEach(event => {
+            if (o[event.location]) {
+              o[event.location].events.push(event)
+              // o[event.location].push(event)
+            } else {
+              o[event.location].events.push(event)
+              // o[event.location] = [event]
+            }
+          });
+
+          console.log(o)
+          response.send(o)
         })
-      const o = []
-
-      for (i = 0; i < cities.length; i++) {
-
-        o.push(cities)
-
-        for (i = 0; i < events.length; i++) {
-
-          if (events.location === cities.location) {
-            o.push(events)
-
-          }
-        }
-
-      }
-
-      response.send(o)
-      response.send(events)
-      console.log(o)
-
     })
+
 })
 
 app.listen(3000)
