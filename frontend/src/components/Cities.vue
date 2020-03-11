@@ -54,8 +54,8 @@
     </header>
 
     <!-- HERO WITH IMG -->
-    <section class="hero">
-      <h3>Göteborg {{events.hero}}</h3>
+    <section class="hero" :style="{ backgroundImage: 'url(/img/' + events.gothenburg.hero + ')'}">
+      <h3>{{events.gothenburg.name}}</h3>
     </section>
 
     <!-- CONTAINER FOR EVENT-CARDS -->
@@ -68,7 +68,7 @@
     >Gothenburg, Sweden</a>
 
     <div class="container p-3 mb-5 bg-white rounded" style="margin-bottom: 100px;">
-      <div class="row">
+      <div class="row ml-3">
         <div class="col" :key="event.name" v-for="event in filterSearch">
           <div class="card shadow mt-3" style="width: 18rem;">
             <img :src="event.img" class="card-img-top" alt="..." height="190px" width="100%" />
@@ -166,7 +166,7 @@ export default {
   },
   methods: {
     fetchData() {
-      fetch("http://localhost:3000/")
+      fetch("http://localhost:3000")
         .then(response => response.json())
         .then(result => {
           console.log(result);
@@ -176,7 +176,7 @@ export default {
   },
   computed: {
     filterSearch() {
-      return this.events.filter(event => {
+      return this.events.gothenburg.events.filter(event => {
         return event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
       });
     }
@@ -205,12 +205,11 @@ h3 {
   /* height: 50vh; */
   margin: auto;
 }
-.card {
+/* .card {
   margin: auto;
-}
+} */
 
 .hero {
-  background-image: url(../assets/img/goteborg.jpg);
   min-height: 300px;
   background-position: center center;
   background-repeat: no-repeat;
