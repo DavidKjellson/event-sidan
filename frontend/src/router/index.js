@@ -15,7 +15,7 @@ const routes = [{
     },
   },
   {
-    path: '/cities',
+    path: '/cities/:city',
     name: 'Cities',
     component: Cities,
     meta: {
