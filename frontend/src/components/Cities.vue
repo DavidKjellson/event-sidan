@@ -55,7 +55,7 @@
 
     <!-- HERO WITH IMG -->
     <section class="hero">
-      <h3>Göteborg</h3>
+      <h3>Göteborg{{  }}</h3>
     </section>
 
     <!-- CONTAINER FOR EVENT-CARDS -->
