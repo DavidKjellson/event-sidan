@@ -16,7 +16,7 @@ sqlite.open('events.sqlite')
 app.get('/', (request, response) => {
   database.all('SELECT * FROM events')
     .then(events => {
-      database.all('SELECT * FROM CITIES')
+      database.all('SELECT * FROM cities')
         .then(cities => {
           response.send(cities)
         })
