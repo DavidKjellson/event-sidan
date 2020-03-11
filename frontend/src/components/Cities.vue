@@ -55,7 +55,7 @@
 
     <!-- HERO WITH IMG -->
     <section class="hero">
-      <h3>Göteborg</h3>
+      <h3>Göteborg {{events.hero}}</h3>
     </section>
 
     <!-- CONTAINER FOR EVENT-CARDS -->
@@ -74,7 +74,7 @@
             <img :src="event.img" class="card-img-top" alt="..." height="190px" width="100%" />
             <div class="card-body">
               <h5 class="card-text">{{event.name}}</h5>
-              <p class="card-text">{{event.description}}</p>
+              <p class="card-text">{{event.descriptionshort}}</p>
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Öppetider: {{event.openinghours}}</li>
@@ -119,7 +119,7 @@
                         </ul>
                       </div>
                       <div class="col">
-                        <p>{{event.descriptionLong}}</p>
+                        <p>{{event.descriptionlong}}</p>
                       </div>
                     </div>
                     <div class="row"></div>
@@ -162,11 +162,17 @@ export default {
     description: String
   },
   created() {
-    fetch("/data.json")
-      .then(response => response.json())
-      .then(result => {
-        this.events = result;
-      });
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      fetch("http://localhost:3000/")
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          this.events = result;
+        });
+    }
   },
   computed: {
     filterSearch() {
