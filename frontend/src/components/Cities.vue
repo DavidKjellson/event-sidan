@@ -54,8 +54,11 @@
     </header>
 
     <!-- HERO WITH IMG -->
-    <section class="hero" :style="{ backgroundImage: 'url(/img/' + events.gothenburg.hero + ')'}">
-      <h3>{{events.gothenburg.name}}</h3>
+    <section
+      class="hero"
+      :style="{ backgroundImage: 'url(/img/' + events[$route.params.city].hero + ')'}"
+    >
+      <h3>{{events[$route.params.city].name}}</h3>
     </section>
 
     <!-- CONTAINER FOR EVENT-CARDS -->

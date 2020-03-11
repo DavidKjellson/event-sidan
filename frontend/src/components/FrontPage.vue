@@ -4,7 +4,7 @@
     <div class="container-sm">
       <div class="row align-items-center" id="buttonLinks" v-for="city in cities" :key="city.route">
         <div class="col align-self-center">
-          <router-link to="/cities">
+          <router-link :to="'/cities/'+ city.location">
             <button type="button" class="btn btn-success btn-lg">{{ city.name }}</button>
           </router-link>
         </div>
@@ -18,8 +18,21 @@ export default {
   data() {
     return {
       chosenCity: null,
-      cities: [{ name: "Göteborg", route: "cities" }]
+      cities: []
     };
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      fetch("http://localhost:3000")
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          this.cities = result;
+        });
+    }
   }
 };
 </script>
