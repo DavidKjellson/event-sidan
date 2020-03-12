@@ -4,55 +4,8 @@
       <div class="collapse bg-transparent" id="navbarHeader">
         <div class="container">
           <div class="row">
+            <div class="col-md-6 py-4"></div>
             <div class="col-md-6 py-4">
-              <form class="form-inline my-2 my-lg-0">
-                <input
-                  class="form-control mr-sm-2"
-                  type="search"
-                  placeholder="Sök event"
-                  aria-label="Search"
-                  v-model="search"
-                />
-                <button class="btn bg-success text-white my-2 my-sm-0" type="submit">Sök</button>
-              </form>
-            </div>
-            <div class="col-md-6 py-4">
-              <!-- <div class="form-check">
-                <ul>
-                  <li>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      v-bind:id="events[$route.params.city].events.children"
-                    />
-                    <label class="form-check-label" for="defaultCheck1">Barnanpassat</label>
-                  </li>
-                  <li>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      v-bind:id="events[$route.params.city].events.food"
-                    />
-                    <label class="form-check-label" for="defaultCheck1">Mat & Dryck</label>
-                  </li>
-                  <li>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      v-bind:id="events[$route.params.city].events.accommodation"
-                    />
-                    <label class="form-check-label" for="defaultCheck1">Boende</label>
-                  </li>
-                  <li>
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      v-bind:id="events[$route.params.city].events.parking"
-                    />
-                    <label class="form-check-label" for="defaultCheck1">Parkering</label>
-                  </li>
-                </ul>
-              </div>-->
               <!-- <h4 class="text-dark">Contact</h4>
               <ul class="list-unstyled">
                 <li>
@@ -112,13 +65,76 @@
         class="jumbotron-heading"
         v-if="events[$route.params.city] != undefined"
       >Aktiviteter i {{events[$route.params.city].name}}</h3>
-      <form>
-        <select>
-          <option value disabled selected hidden>Sortera</option>
-          <option value="0" @click="event.entrance.sort(compareNumbers)">Pris (lägst - högst)</option>
-          <option value="1">Pris (högst - lägst)</option>
-        </select>
-      </form>
+      <div>
+        <b-button v-b-toggle.collapse-2 class="m-1" variant="success">Alternativ ⛛</b-button>
+        <b-collapse id="collapse-2">
+          <div class="row">
+            <div class="col-4">
+              <form class="form-inline my-2 my-lg-0">
+                <input
+                  class="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Sök event"
+                  aria-label="Search"
+                  v-model="search"
+                />
+              </form>
+            </div>
+            <div class="col-4">
+              <div class="form-check">
+                <ul class="filters">
+                  <li>
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      v-bind:id="events[$route.params.city].events.children"
+                    />
+                    <label class="form-check-label" for="defaultCheck1">Barnanpassat</label>
+                  </li>
+                  <li>
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      v-bind:id="events[$route.params.city].events.food"
+                    />
+                    <label class="form-check-label" for="defaultCheck1">Mat & Dryck</label>
+                  </li>
+                </ul>
+                <ul class="filters">
+                  <li>
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      v-bind:id="events[$route.params.city].events.accommodation"
+                    />
+                    <label class="form-check-label" for="defaultCheck1">Boende</label>
+                  </li>
+                  <li>
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      v-bind:id="events[$route.params.city].events.parking"
+                    />
+                    <label class="form-check-label" for="defaultCheck1">Parkering</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-4">
+              <form>
+                <select>
+                  <option value disabled selected hidden>Sortera</option>
+                  <option
+                    value="0"
+                    @click="event.entrance.sort(compareNumbers)"
+                  >Pris (lägst - högst)</option>
+                  <option value="1">Pris (högst - lägst)</option>
+                </select>
+              </form>
+            </div>
+          </div>
+        </b-collapse>
+      </div>
       <div class="row ml-3">
         <div class="col" :key="event.name" v-for="event in filterSearch">
           <div class="card shadow mt-3" style="width: 18rem;">
@@ -254,6 +270,17 @@ export default {
 <style scoped>
 h3 {
   margin-bottom: 20px;
+}
+
+.filters {
+  list-style: none;
+  text-align: left;
+  display: inline-block;
+  margin: 20px;
+}
+
+.filters li {
+  margin: 5px;
 }
 
 .weatherwidget-io {
