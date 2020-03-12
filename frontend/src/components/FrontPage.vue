@@ -45,7 +45,7 @@ export default {
       rgba(240, 240, 240, 0.8),
       rgba(0, 0, 0, 0)
     ),
-    url("../assets/img/fireworks.jpg");
+    url("/img/fireworks.jpg");
   background-size: cover;
   width: 100%;
   background-position-x: 50%;
