@@ -4,7 +4,7 @@
       <div class="collapse bg-transparent" id="navbarHeader">
         <div class="container">
           <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
+            <div class="col-md-6 py-4">
               <form class="form-inline my-2 my-lg-0">
                 <input
                   class="form-control mr-sm-2"
@@ -16,7 +16,43 @@
                 <button class="btn bg-success text-white my-2 my-sm-0" type="submit">Sök</button>
               </form>
             </div>
-            <div class="col-sm-4 offset-md-1 py-4">
+            <div class="col-md-6 py-4">
+              <!-- <div class="form-check">
+                <ul>
+                  <li>
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      v-bind:id="events[$route.params.city].events.children"
+                    />
+                    <label class="form-check-label" for="defaultCheck1">Barnanpassat</label>
+                  </li>
+                  <li>
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      v-bind:id="events[$route.params.city].events.food"
+                    />
+                    <label class="form-check-label" for="defaultCheck1">Mat & Dryck</label>
+                  </li>
+                  <li>
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      v-bind:id="events[$route.params.city].events.accommodation"
+                    />
+                    <label class="form-check-label" for="defaultCheck1">Boende</label>
+                  </li>
+                  <li>
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      v-bind:id="events[$route.params.city].events.parking"
+                    />
+                    <label class="form-check-label" for="defaultCheck1">Parkering</label>
+                  </li>
+                </ul>
+              </div>-->
               <!-- <h4 class="text-dark">Contact</h4>
               <ul class="list-unstyled">
                 <li>
@@ -163,7 +199,8 @@ export default {
     return {
       events: [],
       search: "",
-      API_KEY: secret.API_KEY
+      API_KEY: secret.API_KEY,
+      selected: []
     };
   },
   props: {
