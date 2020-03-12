@@ -1,6 +1,7 @@
 const express = require('express')
 const sqlite = require('sqlite')
 const cors = require('cors')
+const nodeFetch = require('node-fetch')
 
 const app = express()
 
@@ -14,6 +15,18 @@ sqlite.open('events.sqlite')
   .then(database_ => {
     database = database_
   })
+
+// =============VÄDER====================
+
+app.get('/weather', (request, response) => {
+  nodeFetch('https://www.metaweather.com/api/location/890869')
+    .then(response => response.json())
+    .then(w => {
+      response.send(w)
+    })
+})
+
+// ===========================================
 
 app.get('/', (request, response) => {
   database.all('SELECT * FROM events')
