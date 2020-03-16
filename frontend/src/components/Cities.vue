@@ -87,7 +87,8 @@
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      v-bind:id="events[$route.params.city].events.children"
+                      v-model="selectedProperty"
+                      value="children"
                     />
                     <label class="form-check-label" for="defaultCheck1">Barnanpassat</label>
                   </li>
@@ -95,17 +96,19 @@
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      v-bind:id="events[$route.params.city].events.food"
+                      v-model="selectedProperty"
+                      value="food"
                     />
                     <label class="form-check-label" for="defaultCheck1">Mat & Dryck</label>
                   </li>
-                </ul>
-                <ul class="filters">
+                  <!-- </ul>
+                  <ul class="filters">-->
                   <li>
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      v-bind:id="events[$route.params.city].events.accommodation"
+                      v-model="selectedProperty"
+                      value="accommodation"
                     />
                     <label class="form-check-label" for="defaultCheck1">Boende</label>
                   </li>
@@ -113,7 +116,8 @@
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      v-bind:id="events[$route.params.city].events.parking"
+                      v-model="selectedProperty"
+                      value="parking"
                     />
                     <label class="form-check-label" for="defaultCheck1">Parkering</label>
                   </li>
@@ -136,7 +140,7 @@
         </b-collapse>
       </div>
       <div class="row ml-3">
-        <div class="col" :key="event.name" v-for="event in filterSearch">
+        <div class="col" :key="event.name" v-for="event in filteredProperties">
           <div class="card shadow mt-3" style="width: 18rem;">
             <img
               :src="'/img/' + event.img"
@@ -228,7 +232,8 @@ export default {
       events: [],
       search: "",
       API_KEY: secret.API_KEY,
-      selected: []
+      selected: [],
+      selectedProperty: []
     };
   },
   props: {
@@ -253,6 +258,32 @@ export default {
     }
   },
   computed: {
+    filteredProperties() {
+      if (this.selectedProperty.length === 0) {
+        return this.events[this.$route.params.city].events.filter(event => {
+          return (
+            event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+          );
+        });
+      } else {
+        return this.events[this.$route.params.city].events
+          .filter(event => {
+            var keys = this.selectedProperty;
+            var matchFilter = false;
+            keys.forEach(key => {
+              if (event[key] == true) {
+                matchFilter = true;
+              }
+            });
+            return matchFilter;
+          })
+          .filter(event => {
+            return (
+              event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+            );
+          });
+      }
+    },
     filterSearch() {
       if (this.events[this.$route.params.city] != undefined) {
         return this.events[this.$route.params.city].events.filter(event => {
@@ -275,8 +306,8 @@ h3 {
 .filters {
   list-style: none;
   text-align: left;
-  display: inline-block;
-  margin: 20px;
+  /* display: inline-block; */
+  /* margin: 20px; */
 }
 
 .filters li {
