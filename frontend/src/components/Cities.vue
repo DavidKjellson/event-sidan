@@ -66,7 +66,7 @@
         v-if="events[$route.params.city] != undefined"
       >Aktiviteter i {{events[$route.params.city].name}}</h3>
       <div>
-        <b-button v-b-toggle.collapse-2 class="m-1" variant="success">Alternativ ⛛</b-button>
+        <b-button v-b-toggle.collapse-2 class="m-1" variant="success">Alternativ ▼</b-button>
         <b-collapse id="collapse-2">
           <div class="row">
             <div class="col-4">
@@ -87,7 +87,8 @@
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      v-bind:id="events[$route.params.city].events.children"
+                      :id="events[$route.params.city].events.children"
+                      v-if="events[$route.params.city] != undefined"
                     />
                     <label class="form-check-label" for="defaultCheck1">Barnanpassat</label>
                   </li>
@@ -95,7 +96,8 @@
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      v-bind:id="events[$route.params.city].events.food"
+                      :id="events[$route.params.city].events.food"
+                      v-if="events[$route.params.city] != undefined"
                     />
                     <label class="form-check-label" for="defaultCheck1">Mat & Dryck</label>
                   </li>
@@ -105,7 +107,8 @@
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      v-bind:id="events[$route.params.city].events.accommodation"
+                      :id="events[$route.params.city].events.accommodation"
+                      v-if="events[$route.params.city] != undefined"
                     />
                     <label class="form-check-label" for="defaultCheck1">Boende</label>
                   </li>
@@ -113,7 +116,8 @@
                     <input
                       class="form-check-input"
                       type="checkbox"
-                      v-bind:id="events[$route.params.city].events.parking"
+                      :id="events[$route.params.city].events.parking"
+                      v-if="events[$route.params.city] != undefined"
                     />
                     <label class="form-check-label" for="defaultCheck1">Parkering</label>
                   </li>
@@ -121,16 +125,25 @@
               </div>
             </div>
             <div class="col-4">
-              <form>
+              <!-- <form>
                 <select>
                   <option value disabled selected hidden>Sortera</option>
                   <option
                     value="0"
-                    @click="event.entrance.sort(compareNumbers)"
+                    @click="events[$route.params.entrance].sort((event1, event2) => {
+                      event1.entrance - event2.entrance
+                    })"
                   >Pris (lägst - högst)</option>
                   <option value="1">Pris (högst - lägst)</option>
                 </select>
-              </form>
+              </form>-->
+              <ul style="list-style-type: none;">
+                <li>
+                  <strong>Sortering</strong>
+                </li>
+                <li @click="onclick">Pris (lägst - högst)</li>
+                <li>Pris (högst - lägst)</li>
+              </ul>
             </div>
           </div>
         </b-collapse>
@@ -237,6 +250,7 @@ export default {
   },
   created() {
     this.fetchData();
+    this.onclick();
   },
   methods: {
     fetchData() {
@@ -248,8 +262,12 @@ export default {
         });
     },
     compareNumbers(a, b) {
-      console.log("j");
-      return a - b;
+      return a.entrance - b.entrance;
+    },
+    onclick() {
+      if (this.events[this.$route.params.city] != undefined) {
+        this.events[this.$route.params.city].events.sort(this.compareNumbers);
+      }
     }
   },
   computed: {
