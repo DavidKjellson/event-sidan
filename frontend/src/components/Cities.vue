@@ -58,6 +58,7 @@
       data-mode="Current"
       data-days="3"
       data-theme="pure"
+      id="#weather"
     >Gothenburg, Sweden</a>
 
     <div class="container p-3 mb-5 bg-white rounded" style="margin-bottom: 100px;">
@@ -254,6 +255,9 @@ export default {
     this.fetchData();
     this.onclick();
   },
+  updated() {
+    this.setTitle();
+  },
   methods: {
     fetchData() {
       fetch("http://localhost:3000")
@@ -277,6 +281,12 @@ export default {
         x.innerHTML = "Alternativ ▲";
       } else {
         x.innerHTML = "Alternativ ▼";
+      }
+    },
+    setTitle() {
+      if (this.events[this.$route.params.city] != undefined) {
+        document.title =
+          this.events[this.$route.params.city].name + " - Activitify";
       }
     }
   },

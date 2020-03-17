@@ -18,9 +18,7 @@ const routes = [{
     path: '/cities/:city',
     name: 'Cities',
     component: Cities,
-    meta: {
-      title: 'Göteborg - Activityfy'
-    }
+
   }
 ]
 
