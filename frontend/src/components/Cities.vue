@@ -112,8 +112,8 @@
                     />
                     <label class="form-check-label" for="defaultCheck1">Mat & Dryck</label>
                   </li>
-                  <!-- </ul>
-                  <ul class="filters">-->
+                </ul>
+                <ul class="filters">
                   <li>
                     <input
                       class="form-check-input"
@@ -339,7 +339,7 @@ h3 {
 .filters {
   list-style: none;
   text-align: left;
-  /* display: inline-block; */
+  display: inline-block;
   /* margin: 20px; */
 }
 
