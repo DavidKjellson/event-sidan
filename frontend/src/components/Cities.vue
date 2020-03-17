@@ -342,6 +342,9 @@ h3 {
   display: inline-block;
   /* margin: 20px; */
 }
+.form-check {
+  padding: 0;
+}
 
 .filters li {
   margin: 5px;
