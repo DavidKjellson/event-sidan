@@ -66,7 +66,13 @@
         v-if="events[$route.params.city] != undefined"
       >Aktiviteter i {{events[$route.params.city].name}}</h3>
       <div>
-        <b-button v-b-toggle.collapse-2 class="m-1" variant="success">Alternativ ▼</b-button>
+        <b-button
+          v-b-toggle.collapse-2
+          class="m-1"
+          variant="success"
+          @click="optionsArrow()"
+          id="options"
+        >Alternativ ▼</b-button>
         <b-collapse id="collapse-2">
           <div class="row">
             <div class="col-4">
@@ -133,24 +139,11 @@
               </div>
             </div>
             <div class="col-4">
-              <!-- <form>
-                <select>
-                  <option value disabled selected hidden>Sortera</option>
-                  <option
-                    value="0"
-                    @click="events[$route.params.entrance].sort((event1, event2) => {
-                      event1.entrance - event2.entrance
-                    })"
-                  >Pris (lägst - högst)</option>
-                  <option value="1">Pris (högst - lägst)</option>
-                </select>
-              </form>-->
               <ul style="list-style-type: none;">
                 <li>
                   <strong>Sortering</strong>
                 </li>
-                <li @click="onclick">Pris (lägst - högst)</li>
-                <li>Pris (högst - lägst)</li>
+                <li @click="onclick" style="cursor: pointer">Pris</li>
               </ul>
             </div>
           </div>
@@ -276,6 +269,14 @@ export default {
     onclick() {
       if (this.events[this.$route.params.city] != undefined) {
         this.events[this.$route.params.city].events.sort(this.compareNumbers);
+      }
+    },
+    optionsArrow() {
+      let x = document.querySelector("#options");
+      if (x.innerHTML === "Alternativ ▼") {
+        x.innerHTML = "Alternativ ▲";
+      } else {
+        x.innerHTML = "Alternativ ▼";
       }
     }
   },
