@@ -167,6 +167,7 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Öppetider: {{event.openinghours}}</li>
               <li class="list-group-item">Inträde: {{event.entrance}} SEK</li>
+              <li class="list-group-item">Hållplats: {{event.stop}}</li>
               <li class="list-group-item">Barnanpassat: {{event.children | yesno}}</li>
             </ul>
             <div class="card-body">
@@ -200,6 +201,7 @@
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item">Öppetider: {{event.openinghours}}</li>
                           <li class="list-group-item">Inträde: {{event.entrance}} SEK</li>
+                          <li class="list-group-item">Hållplats: {{event.stop}}</li>
                           <li class="list-group-item">Barnanpassat: {{event.children | yesno}}</li>
                           <li class="list-group-item">Mat & Dryck: {{event.food | yesno}}</li>
                           <li class="list-group-item">Boende: {{event.accommodation | yesno}}</li>
