@@ -54,12 +54,12 @@
     <!-- CONTAINER FOR EVENT-CARDS -->
     <a
       class="weatherwidget-io"
-      href="https://forecast7.com/sv/57d7111d97/gothenburg/"
+      :href="'https://forecast7.com/sv/' + events[$route.params.city].weather"
       data-mode="Current"
       data-days="3"
       data-theme="pure"
-      id="#weather"
-    >Gothenburg, Sweden</a>
+      v-if="events[$route.params.city] != undefined"
+    >{{events[$route.params.city].name}}</a>
 
     <div class="container p-3 mb-5 bg-white rounded" style="margin-bottom: 100px;">
       <h3
