@@ -260,9 +260,13 @@ export default {
     this.alphabeticalSort();
   },
   updated() {
-    window.__weatherwidget_init();
     this.setTitle();
   },
+  // VÄDERLÖSNING
+  mounted: function() {
+    window.__weatherwidget_init();
+  },
+
   methods: {
     fetchData() {
       fetch("http://localhost:3000")
