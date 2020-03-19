@@ -264,7 +264,11 @@ export default {
   },
   // VÄDERLÖSNING
   mounted: function() {
-    window.__weatherwidget_init();
+    this.$nextTick(function() {
+      if (window.__weatherwidget_init) {
+        window.__weatherwidget_init();
+      }
+    });
   },
 
   methods: {
@@ -329,30 +333,33 @@ export default {
   },
   computed: {
     filteredProperties() {
-      if (this.selectedProperty.length === 0) {
-        return this.events[this.$route.params.city].events.filter(event => {
-          return (
-            event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
-          );
-        });
-      } else {
-        return this.events[this.$route.params.city].events
-          .filter(event => {
-            let keys = this.selectedProperty;
-            let n = 0;
-            keys.forEach(key => {
-              if (event[key]) {
-                n++;
-              }
-            });
-            return n === this.selectedProperty.length;
-          })
-          .filter(event => {
+      if (this.events[this.$route.params.city] != undefined) {
+        if (this.selectedProperty.length === 0) {
+          return this.events[this.$route.params.city].events.filter(event => {
             return (
               event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
             );
           });
+        } else {
+          return this.events[this.$route.params.city].events
+            .filter(event => {
+              let keys = this.selectedProperty;
+              let n = 0;
+              keys.forEach(key => {
+                if (event[key]) {
+                  n++;
+                }
+              });
+              return n === this.selectedProperty.length;
+            })
+            .filter(event => {
+              return (
+                event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+              );
+            });
+        }
       }
+      return [];
     },
     filterSearch() {
       if (this.events[this.$route.params.city] != undefined) {
