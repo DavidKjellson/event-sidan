@@ -150,7 +150,7 @@
           </div>
         </b-collapse>
       </div>
-      <div class="row ml-3">
+      <div class="row">
         <div class="col" :key="event.name" v-for="event in filteredProperties">
           <div class="card shadow mt-3" style="width: 18rem;">
             <img
