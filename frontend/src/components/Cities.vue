@@ -144,7 +144,8 @@
                 <li>
                   <strong>Sortering</strong>
                 </li>
-                <li @click="onclick" style="cursor: pointer">Pris</li>
+                <li @click="entranceSort" class="sort" id="price">Pris ↑</li>
+                <li @click="alphabeticalSort" class="sort" id="alphabetical">Bokstavsordning (A-Ö)</li>
               </ul>
             </div>
           </div>
@@ -255,7 +256,8 @@ export default {
   },
   created() {
     this.fetchData();
-    this.onclick();
+    this.entranceSort();
+    this.alphabeticalSort();
   },
   updated() {
     this.setTitle();
@@ -269,12 +271,40 @@ export default {
           this.events = result;
         });
     },
-    compareNumbers(a, b) {
+    lowestHighest(a, b) {
       return a.entrance - b.entrance;
     },
-    onclick() {
+    highestLowest(a, b) {
+      return b.entrance - a.entrance;
+    },
+    aZ(a, b) {
+      return ("" + a.name).localeCompare(b.name);
+    },
+    zA(a, b) {
+      return ("" + b.name).localeCompare(a.name);
+    },
+    entranceSort() {
       if (this.events[this.$route.params.city] != undefined) {
-        this.events[this.$route.params.city].events.sort(this.compareNumbers);
+        let numberedorder = document.querySelector("#price");
+        if (numberedorder.innerHTML === "Pris ↑") {
+          this.events[this.$route.params.city].events.sort(this.lowestHighest);
+          numberedorder.innerHTML = "Pris ↓";
+        } else {
+          this.events[this.$route.params.city].events.sort(this.highestLowest);
+          numberedorder.innerHTML = "Pris ↑";
+        }
+      }
+    },
+    alphabeticalSort() {
+      if (this.events[this.$route.params.city] != undefined) {
+        let alphabeticalorder = document.querySelector("#alphabetical");
+        if (alphabeticalorder.innerHTML === "Bokstavsordning (A-Ö)") {
+          this.events[this.$route.params.city].events.sort(this.aZ);
+          alphabeticalorder.innerHTML = "Bokstavsordning (Ö-A)";
+        } else {
+          this.events[this.$route.params.city].events.sort(this.zA);
+          alphabeticalorder.innerHTML = "Bokstavsordning (A-Ö)";
+        }
       }
     },
     optionsArrow() {
@@ -388,6 +418,9 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 5px;
   padding-top: 120px;
+}
+.sort {
+  cursor: pointer;
 }
 select:invalid {
   color: gray;
