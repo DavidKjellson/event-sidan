@@ -333,14 +333,14 @@ export default {
       } else {
         return this.events[this.$route.params.city].events
           .filter(event => {
-            var keys = this.selectedProperty;
-            var matchFilter = false;
+            let keys = this.selectedProperty;
+            let n = 0;
             keys.forEach(key => {
-              if (event[key] == true) {
-                matchFilter = true;
+              if (event[key]) {
+                n++;
               }
             });
-            return matchFilter;
+            return n === this.selectedProperty.length;
           })
           .filter(event => {
             return (
