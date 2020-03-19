@@ -260,6 +260,7 @@ export default {
     this.alphabeticalSort();
   },
   updated() {
+    window.__weatherwidget_init();
     this.setTitle();
   },
   methods: {
