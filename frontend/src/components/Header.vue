@@ -3,7 +3,7 @@
     <div class="collapse bg-transparent" id="navbarHeader">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 py-4" v-for="city in cities" :key="city.route">
+          <div v-for="city in cities" :key="city.route">
             <router-link :to="'/cities/'+ city.location">
               <button type="button" class="btn btn-success" id="button">{{ city.name }}</button>
             </router-link>
@@ -76,6 +76,9 @@ export default {
 }
 
 #button {
+  margin-top: 5px;
+  margin-right: 10px;
+  padding: 2px;
   width: 100px;
 }
 </style>
