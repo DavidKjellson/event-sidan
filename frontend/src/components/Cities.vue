@@ -414,8 +414,5 @@ select:invalid {
     height: 40vh;
     margin: auto;
   }
-  .filters {
-    display: block;
-  }
 }
 </style>
