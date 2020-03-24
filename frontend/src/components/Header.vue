@@ -3,7 +3,11 @@
     <div class="collapse bg-transparent" id="navbarHeader">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 py-4"></div>
+          <div class="col-md-6 py-4" v-for="city in cities" :key="city.route">
+            <router-link :to="'/cities/'+ city.location">
+              <button type="button" class="btn btn-success" id="button">{{ city.name }}</button>
+            </router-link>
+          </div>
           <div class="col-md-6 py-4">
             <!-- <h4 class="text-dark">Contact</h4>
               <ul class="list-unstyled">
@@ -44,7 +48,24 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  data() {
+    return {
+      cities: []
+    };
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      fetch("http://localhost:3000")
+        .then(response => response.json())
+        .then(result => {
+          this.cities = result;
+        });
+    }
+  }
 };
 </script>
 
@@ -52,5 +73,9 @@ export default {
 #name {
   font-family: "Abel", sans-serif;
   font-size: 30px;
+}
+
+#button {
+  width: 100px;
 }
 </style>
