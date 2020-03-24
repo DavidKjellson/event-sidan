@@ -38,7 +38,7 @@
         >Alternativ ▼</b-button>
         <b-collapse id="collapse-2">
           <div class="row">
-            <div class="col-4">
+            <div class="col">
               <form class="form-inline my-2 my-lg-0">
                 <input
                   class="form-control mr-sm-2"
@@ -49,7 +49,7 @@
                 />
               </form>
             </div>
-            <div class="col-4">
+            <div class="col-lg">
               <div class="form-check">
                 <ul class="filters">
                   <li>
@@ -101,7 +101,7 @@
                 </ul>
               </div>
             </div>
-            <div class="col-4">
+            <div class="col">
               <ul style="list-style-type: none;">
                 <li>
                   <strong>Sortering</strong>
@@ -413,6 +413,9 @@ select:invalid {
     width: 75vw;
     height: 40vh;
     margin: auto;
+  }
+  .filters {
+    display: block;
   }
 }
 </style>
