@@ -16,17 +16,7 @@ sqlite.open('events.sqlite')
     database = database_
   })
 
-// =============VÄDER====================
 
-app.get('/weather', (request, response) => {
-  nodeFetch('https://www.metaweather.com/api/location/890869')
-    .then(response => response.json())
-    .then(w => {
-      response.send(w)
-    })
-})
-
-// ===========================================
 
 app.get('/', (request, response) => {
   database.all('SELECT * FROM events')
