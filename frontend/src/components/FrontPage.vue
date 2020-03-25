@@ -1,12 +1,12 @@
 <template>
   <div id="frontpage">
     <h1 id="compname">Activityfy</h1>
-    <div :value="$store.state.locale" @click="$store.commit('swedish')">
+    <span :value="$store.state.locale" @click="$store.commit('swedish')">
       <country-flag country="se" size="big" />
-    </div>
-    <div :value="$store.state.locale" @click="$store.commit('english')">
+    </span>
+    <span :value="$store.state.locale" @click="$store.commit('english')">
       <country-flag country="gb" size="big" />
-    </div>
+    </span>
     <div class="container-sm">
       <div class="row align-items-center" id="buttonLinks" v-for="city in cities" :key="city.route">
         <div class="col align-self-center">
