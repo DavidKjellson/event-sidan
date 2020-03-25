@@ -3,7 +3,7 @@
     <Header />
     <div class="container">
       <div class="jumbotron jumbotron-fluid bg-light text-dark">
-        <div class="container">
+        <div class="container" v-if="$store.state.locale === '_SV'">
           <h1>Om oss</h1>
           <p class="lead text-left">
             Activityfy vill erbjuda lättillgänglig underhållning för den aktiva karriärfamiljen, ungdomar eller våra pensionärer landet över.
@@ -29,6 +29,18 @@ export default {
   name: "About",
   components: {
     Header
+  },
+  updated() {
+    this.setTitle();
+  },
+  methods: {
+    setTitle() {
+      if (this.$store.state.locale === "_SV") {
+        document.title = "Om oss - Activitify";
+      } else {
+        document.title = "About - Activitify";
+      }
+    }
   }
 };
 </script>

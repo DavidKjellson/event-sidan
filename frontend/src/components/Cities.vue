@@ -44,7 +44,7 @@
           id="options"
         >Alternativ ▼</b-button>
         <b-button
-          v-if="$store.state.locale === '_EN'"
+          v-else
           v-b-toggle.collapse-2
           class="m-1"
           variant="success"
@@ -61,6 +61,15 @@
                   placeholder="Sök event"
                   aria-label="Search"
                   v-model="search"
+                  v-if="$store.state.locale === '_SV'"
+                />
+                <input
+                  class="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Search event"
+                  aria-label="Search"
+                  v-model="search"
+                  v-else
                 />
               </form>
             </div>
@@ -81,11 +90,7 @@
                       class="form-check-label"
                       for="defaultCheck1"
                     >Barnanpassat</label>
-                    <label
-                      v-if="$store.state.locale === '_EN'"
-                      class="form-check-label"
-                      for="defaultCheck1"
-                    >Child adapted</label>
+                    <label v-else class="form-check-label" for="defaultCheck1">Child adapted</label>
                   </li>
                   <li>
                     <input
@@ -101,11 +106,7 @@
                       class="form-check-label"
                       for="defaultCheck1"
                     >Mat & Dryck</label>
-                    <label
-                      v-if="$store.state.locale === '_EN'"
-                      class="form-check-label"
-                      for="defaultCheck1"
-                    >Food & Drinks</label>
+                    <label v-else class="form-check-label" for="defaultCheck1">Food & Drinks</label>
                   </li>
                 </ul>
                 <ul class="filters">
@@ -123,11 +124,7 @@
                       class="form-check-label"
                       for="defaultCheck1"
                     >Boende</label>
-                    <label
-                      v-if="$store.state.locale === '_EN'"
-                      class="form-check-label"
-                      for="defaultCheck1"
-                    >Accommodation</label>
+                    <label v-else class="form-check-label" for="defaultCheck1">Accommodation</label>
                   </li>
                   <li>
                     <input
@@ -143,11 +140,7 @@
                       class="form-check-label"
                       for="defaultCheck1"
                     >Parkering</label>
-                    <label
-                      v-if="$store.state.locale === '_EN'"
-                      class="form-check-label"
-                      for="defaultCheck1"
-                    >Parking</label>
+                    <label v-else class="form-check-label" for="defaultCheck1">Parking</label>
                   </li>
                 </ul>
               </div>
@@ -157,7 +150,7 @@
                 <li v-if="$store.state.locale === '_SV'">
                   <strong>Sortering</strong>
                 </li>
-                <li v-if="$store.state.locale === '_EN'">
+                <li v-else>
                   <strong>Sorting</strong>
                 </li>
                 <li
@@ -166,12 +159,7 @@
                   class="sort"
                   id="price"
                 >Pris ↑</li>
-                <li
-                  v-if="$store.state.locale === '_EN'"
-                  @click="entranceSort"
-                  class="sort"
-                  id="price"
-                >Price ↑</li>
+                <li v-else @click="entranceSort" class="sort" id="price">Price ↑</li>
                 <li
                   v-if="$store.state.locale === '_SV'"
                   @click="alphabeticalSort"
@@ -179,7 +167,7 @@
                   id="alphabetical"
                 >Bokstavsordning (A-Ö)</li>
                 <li
-                  v-if="$store.state.locale === '_EN'"
+                  v-else
                   @click="alphabeticalSort"
                   class="sort"
                   id="alphabetical"
@@ -208,31 +196,22 @@
                 v-if="$store.state.locale === '_SV'"
                 class="list-group-item"
               >Öppetider: {{event.openinghours}}</li>
-              <li
-                v-if="$store.state.locale === '_EN'"
-                class="list-group-item"
-              >Open: {{event.openinghours}}</li>
+              <li v-else class="list-group-item">Open: {{event.openinghours}}</li>
               <li
                 v-if="$store.state.locale === '_SV'"
                 class="list-group-item"
               >Inträde: {{event.entrance}} SEK</li>
-              <li
-                v-if="$store.state.locale === '_EN'"
-                class="list-group-item"
-              >Entrance: {{event.entrance}} SEK</li>
+              <li v-else class="list-group-item">Entrance: {{event.entrance}} SEK</li>
               <li
                 v-if="$store.state.locale === '_SV'"
                 class="list-group-item"
               >Hållplats: {{event.stop}}</li>
-              <li v-if="$store.state.locale === '_EN'" class="list-group-item">Stop: {{event.stop}}</li>
+              <li v-else class="list-group-item">Stop: {{event.stop}}</li>
               <li
                 v-if="$store.state.locale === '_SV'"
                 class="list-group-item"
               >Barnanpassat: {{event.children | yesno}}</li>
-              <li
-                v-if="$store.state.locale === '_EN'"
-                class="list-group-item"
-              >Child adapted: {{event.children | yesno}}</li>
+              <li v-else class="list-group-item">Child adapted: {{event.children | yesno}}</li>
             </ul>
             <div class="card-body">
               <div>
@@ -243,7 +222,7 @@
                   class="btn bg-success text-white my-2 my-sm-0"
                 >Mer information</b-button>
                 <b-button
-                  v-if="$store.state.locale === '_EN'"
+                  v-else
                   v-b-modal="'modal-' + event.name"
                   class="btn bg-success text-white my-2 my-sm-0"
                 >More information</b-button>
@@ -273,58 +252,43 @@
                             v-if="$store.state.locale === '_SV'"
                             class="list-group-item"
                           >Öppetider: {{event.openinghours}}</li>
-                          <li
-                            v-if="$store.state.locale === '_EN'"
-                            class="list-group-item"
-                          >Open: {{event.openinghours}}</li>
+                          <li v-else class="list-group-item">Open: {{event.openinghours}}</li>
                           <li
                             v-if="$store.state.locale === '_SV'"
                             class="list-group-item"
                           >Inträde: {{event.entrance}} SEK</li>
-                          <li
-                            v-if="$store.state.locale === '_EN'"
-                            class="list-group-item"
-                          >Entrance: {{event.entrance}} SEK</li>
+                          <li v-else class="list-group-item">Entrance: {{event.entrance}} SEK</li>
                           <li
                             v-if="$store.state.locale === '_SV'"
                             class="list-group-item"
                           >Hållplats: {{event.stop}}</li>
-                          <li
-                            v-if="$store.state.locale === '_EN'"
-                            class="list-group-item"
-                          >Stop: {{event.stop}}</li>
+                          <li v-else class="list-group-item">Stop: {{event.stop}}</li>
                           <li
                             v-if="$store.state.locale === '_SV'"
                             class="list-group-item"
                           >Barnanpassat: {{event.children | yesno}}</li>
                           <li
-                            v-if="$store.state.locale === '_EN'"
+                            v-else
                             class="list-group-item"
                           >Child adapted: {{event.children | yesno}}</li>
                           <li
                             v-if="$store.state.locale === '_SV'"
                             class="list-group-item"
                           >Mat & Dryck: {{event.food | yesno}}</li>
-                          <li
-                            v-if="$store.state.locale === '_EN'"
-                            class="list-group-item"
-                          >Food & Drink: {{event.food | yesno}}</li>
+                          <li v-else class="list-group-item">Food & Drink: {{event.food | yesno}}</li>
                           <li
                             v-if="$store.state.locale === '_SV'"
                             class="list-group-item"
                           >Boende: {{event.accommodation | yesno}}</li>
                           <li
-                            v-if="$store.state.locale === '_EN'"
+                            v-else
                             class="list-group-item"
                           >Accommodation: {{event.accommodation | yesno}}</li>
                           <li
                             v-if="$store.state.locale === '_SV'"
                             class="list-group-item"
                           >Parkering: {{event.parking | yesno}}</li>
-                          <li
-                            v-if="$store.state.locale === '_EN'"
-                            class="list-group-item"
-                          >Parking: {{event.parking | yesno}}</li>
+                          <li v-else class="list-group-item">Parking: {{event.parking | yesno}}</li>
                         </ul>
                       </div>
                       <div class="col">
