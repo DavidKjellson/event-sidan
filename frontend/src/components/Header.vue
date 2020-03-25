@@ -12,18 +12,19 @@
               >{{ city['name' + $store.state.locale] }}</button>
             </router-link>
           </div>
-          <div>
-            <span :value="$store.state.locale" @click="$store.commit('swedish')">
-              <country-flag country="se" size="big" />
-            </span>
-            <span :value="$store.state.locale" @click="$store.commit('english')">
-              <country-flag country="gb" size="big" />
-            </span>
-          </div>
-          <div class="col-md-6 py-4">
-            <router-link :to="'/about'">
+
+          <div class="col-sm-8 col-md-7 py-1">
+            <router-link class="link" :to="'/about'">
               <h4 class="text-dark">Om oss</h4>
             </router-link>
+          </div>
+          <div class="col py-1">
+            <span :value="$store.state.locale" @click="$store.commit('swedish')">
+              <country-flag country="se" size="medium" />
+            </span>
+            <span :value="$store.state.locale" @click="$store.commit('english')">
+              <country-flag country="gb" size="medium" />
+            </span>
           </div>
         </div>
       </div>
@@ -83,5 +84,9 @@ export default {
   margin-right: 10px;
   padding: 2px;
   width: 100px;
+}
+
+.link {
+  text-decoration: none;
 }
 </style>
