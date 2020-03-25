@@ -296,7 +296,9 @@ export default {
     setTitle() {
       if (this.events[this.$route.params.city] != undefined) {
         document.title =
-          this.events[this.$route.params.city].name + " - Activitify";
+          this.events[this.$route.params.city][
+            "name" + this.$store.state.locale
+          ] + " - Activitify";
       }
     }
   },
