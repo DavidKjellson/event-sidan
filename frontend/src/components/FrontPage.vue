@@ -62,7 +62,7 @@ export default {
 }
 h1 {
   font-size: 5rem;
-  padding-top: 15%;
+  padding-top: 5rem;
 }
 button {
   font-size: 2rem;
