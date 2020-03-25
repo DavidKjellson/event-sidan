@@ -28,16 +28,29 @@
     <div class="container p-3 mb-5 bg-white rounded" style="margin-bottom: 100px;">
       <h3
         class="jumbotron-heading"
-        v-if="events[$route.params.city] != undefined"
+        v-if="events[$route.params.city] != undefined && $store.state.locale === '_SV'"
       >Aktiviteter i {{events[$route.params.city]['name' + $store.state.locale]}}</h3>
+      <h3
+        class="jumbotron-heading"
+        v-if="events[$route.params.city] != undefined && $store.state.locale === '_EN'"
+      >Activities in {{events[$route.params.city]['name' + $store.state.locale]}}</h3>
       <div>
         <b-button
+          v-if="$store.state.locale === '_SV'"
           v-b-toggle.collapse-2
           class="m-1"
           variant="success"
           @click="optionsArrow()"
           id="options"
         >Alternativ ▼</b-button>
+        <b-button
+          v-if="$store.state.locale === '_EN'"
+          v-b-toggle.collapse-2
+          class="m-1"
+          variant="success"
+          @click="optionsArrow()"
+          id="options"
+        >Alternatives ▼</b-button>
         <b-collapse id="collapse-2">
           <div class="row">
             <div class="col">
@@ -63,7 +76,16 @@
                       v-model="selectedProperty"
                       value="children"
                     />
-                    <label class="form-check-label" for="defaultCheck1">Barnanpassat</label>
+                    <label
+                      v-if="$store.state.locale === '_SV'"
+                      class="form-check-label"
+                      for="defaultCheck1"
+                    >Barnanpassat</label>
+                    <label
+                      v-if="$store.state.locale === '_EN'"
+                      class="form-check-label"
+                      for="defaultCheck1"
+                    >Child adapted</label>
                   </li>
                   <li>
                     <input
@@ -74,7 +96,16 @@
                       v-model="selectedProperty"
                       value="food"
                     />
-                    <label class="form-check-label" for="defaultCheck1">Mat & Dryck</label>
+                    <label
+                      v-if="$store.state.locale === '_SV'"
+                      class="form-check-label"
+                      for="defaultCheck1"
+                    >Mat & Dryck</label>
+                    <label
+                      v-if="$store.state.locale === '_EN'"
+                      class="form-check-label"
+                      for="defaultCheck1"
+                    >Food & Drinks</label>
                   </li>
                 </ul>
                 <ul class="filters">
@@ -87,7 +118,16 @@
                       v-model="selectedProperty"
                       value="accommodation"
                     />
-                    <label class="form-check-label" for="defaultCheck1">Boende</label>
+                    <label
+                      v-if="$store.state.locale === '_SV'"
+                      class="form-check-label"
+                      for="defaultCheck1"
+                    >Boende</label>
+                    <label
+                      v-if="$store.state.locale === '_EN'"
+                      class="form-check-label"
+                      for="defaultCheck1"
+                    >Accommodation</label>
                   </li>
                   <li>
                     <input
@@ -98,18 +138,52 @@
                       v-model="selectedProperty"
                       value="parking"
                     />
-                    <label class="form-check-label" for="defaultCheck1">Parkering</label>
+                    <label
+                      v-if="$store.state.locale === '_SV'"
+                      class="form-check-label"
+                      for="defaultCheck1"
+                    >Parkering</label>
+                    <label
+                      v-if="$store.state.locale === '_EN'"
+                      class="form-check-label"
+                      for="defaultCheck1"
+                    >Parking</label>
                   </li>
                 </ul>
               </div>
             </div>
             <div class="col">
               <ul style="list-style-type: none;">
-                <li>
+                <li v-if="$store.state.locale === '_SV'">
                   <strong>Sortering</strong>
                 </li>
-                <li @click="entranceSort" class="sort" id="price">Pris ↑</li>
-                <li @click="alphabeticalSort" class="sort" id="alphabetical">Bokstavsordning (A-Ö)</li>
+                <li v-if="$store.state.locale === '_EN'">
+                  <strong>Sorting</strong>
+                </li>
+                <li
+                  v-if="$store.state.locale === '_SV'"
+                  @click="entranceSort"
+                  class="sort"
+                  id="price"
+                >Pris ↑</li>
+                <li
+                  v-if="$store.state.locale === '_EN'"
+                  @click="entranceSort"
+                  class="sort"
+                  id="price"
+                >Price ↑</li>
+                <li
+                  v-if="$store.state.locale === '_SV'"
+                  @click="alphabeticalSort"
+                  class="sort"
+                  id="alphabetical"
+                >Bokstavsordning (A-Ö)</li>
+                <li
+                  v-if="$store.state.locale === '_EN'"
+                  @click="alphabeticalSort"
+                  class="sort"
+                  id="alphabetical"
+                >Alphabetical (A-Z)</li>
               </ul>
             </div>
           </div>
@@ -130,18 +204,49 @@
               <p class="card-text">{{event.descriptionshort}}</p>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Öppetider: {{event.openinghours}}</li>
-              <li class="list-group-item">Inträde: {{event.entrance}} SEK</li>
-              <li class="list-group-item">Hållplats: {{event.stop}}</li>
-              <li class="list-group-item">Barnanpassat: {{event.children | yesno}}</li>
+              <li
+                v-if="$store.state.locale === '_SV'"
+                class="list-group-item"
+              >Öppetider: {{event.openinghours}}</li>
+              <li
+                v-if="$store.state.locale === '_EN'"
+                class="list-group-item"
+              >Open: {{event.openinghours}}</li>
+              <li
+                v-if="$store.state.locale === '_SV'"
+                class="list-group-item"
+              >Inträde: {{event.entrance}} SEK</li>
+              <li
+                v-if="$store.state.locale === '_EN'"
+                class="list-group-item"
+              >Entrance: {{event.entrance}} SEK</li>
+              <li
+                v-if="$store.state.locale === '_SV'"
+                class="list-group-item"
+              >Hållplats: {{event.stop}}</li>
+              <li v-if="$store.state.locale === '_EN'" class="list-group-item">Stop: {{event.stop}}</li>
+              <li
+                v-if="$store.state.locale === '_SV'"
+                class="list-group-item"
+              >Barnanpassat: {{event.children | yesno}}</li>
+              <li
+                v-if="$store.state.locale === '_EN'"
+                class="list-group-item"
+              >Child adapted: {{event.children | yesno}}</li>
             </ul>
             <div class="card-body">
               <div>
                 <!-- Modal -->
                 <b-button
+                  v-if="$store.state.locale === '_SV'"
                   v-b-modal="'modal-' + event.name"
                   class="btn bg-success text-white my-2 my-sm-0"
                 >Mer information</b-button>
+                <b-button
+                  v-if="$store.state.locale === '_EN'"
+                  v-b-modal="'modal-' + event.name"
+                  class="btn bg-success text-white my-2 my-sm-0"
+                >More information</b-button>
 
                 <b-modal
                   :id="'modal-' + event.name"
@@ -164,13 +269,62 @@
                       </div>
                       <div class="col">
                         <ul class="list-group list-group-flush">
-                          <li class="list-group-item">Öppetider: {{event.openinghours}}</li>
-                          <li class="list-group-item">Inträde: {{event.entrance}} SEK</li>
-                          <li class="list-group-item">Hållplats: {{event.stop}}</li>
-                          <li class="list-group-item">Barnanpassat: {{event.children | yesno}}</li>
-                          <li class="list-group-item">Mat & Dryck: {{event.food | yesno}}</li>
-                          <li class="list-group-item">Boende: {{event.accommodation | yesno}}</li>
-                          <li class="list-group-item">Parkering: {{event.parking | yesno}}</li>
+                          <li
+                            v-if="$store.state.locale === '_SV'"
+                            class="list-group-item"
+                          >Öppetider: {{event.openinghours}}</li>
+                          <li
+                            v-if="$store.state.locale === '_EN'"
+                            class="list-group-item"
+                          >Open: {{event.openinghours}}</li>
+                          <li
+                            v-if="$store.state.locale === '_SV'"
+                            class="list-group-item"
+                          >Inträde: {{event.entrance}} SEK</li>
+                          <li
+                            v-if="$store.state.locale === '_EN'"
+                            class="list-group-item"
+                          >Entrance: {{event.entrance}} SEK</li>
+                          <li
+                            v-if="$store.state.locale === '_SV'"
+                            class="list-group-item"
+                          >Hållplats: {{event.stop}}</li>
+                          <li
+                            v-if="$store.state.locale === '_EN'"
+                            class="list-group-item"
+                          >Stop: {{event.stop}}</li>
+                          <li
+                            v-if="$store.state.locale === '_SV'"
+                            class="list-group-item"
+                          >Barnanpassat: {{event.children | yesno}}</li>
+                          <li
+                            v-if="$store.state.locale === '_EN'"
+                            class="list-group-item"
+                          >Child adapted: {{event.children | yesno}}</li>
+                          <li
+                            v-if="$store.state.locale === '_SV'"
+                            class="list-group-item"
+                          >Mat & Dryck: {{event.food | yesno}}</li>
+                          <li
+                            v-if="$store.state.locale === '_EN'"
+                            class="list-group-item"
+                          >Food & Drink: {{event.food | yesno}}</li>
+                          <li
+                            v-if="$store.state.locale === '_SV'"
+                            class="list-group-item"
+                          >Boende: {{event.accommodation | yesno}}</li>
+                          <li
+                            v-if="$store.state.locale === '_EN'"
+                            class="list-group-item"
+                          >Accommodation: {{event.accommodation | yesno}}</li>
+                          <li
+                            v-if="$store.state.locale === '_SV'"
+                            class="list-group-item"
+                          >Parkering: {{event.parking | yesno}}</li>
+                          <li
+                            v-if="$store.state.locale === '_EN'"
+                            class="list-group-item"
+                          >Parking: {{event.parking | yesno}}</li>
                         </ul>
                       </div>
                       <div class="col">
@@ -262,7 +416,10 @@ export default {
       return ("" + b.name).localeCompare(a.name);
     },
     entranceSort() {
-      if (this.events[this.$route.params.city] != undefined) {
+      if (
+        this.events[this.$route.params.city] != undefined &&
+        this.$store.state.locale === "_SV"
+      ) {
         let numberedorder = document.querySelector("#price");
         if (numberedorder.innerHTML === "Pris ↑") {
           this.events[this.$route.params.city].events.sort(this.lowestHighest);
@@ -271,10 +428,25 @@ export default {
           this.events[this.$route.params.city].events.sort(this.highestLowest);
           numberedorder.innerHTML = "Pris ↑";
         }
+      } else if (
+        this.events[this.$route.params.city] != undefined &&
+        this.$store.state.locale === "_EN"
+      ) {
+        let numberedorder = document.querySelector("#price");
+        if (numberedorder.innerHTML === "Price ↑") {
+          this.events[this.$route.params.city].events.sort(this.lowestHighest);
+          numberedorder.innerHTML = "Price ↓";
+        } else {
+          this.events[this.$route.params.city].events.sort(this.highestLowest);
+          numberedorder.innerHTML = "Price ↑";
+        }
       }
     },
     alphabeticalSort() {
-      if (this.events[this.$route.params.city] != undefined) {
+      if (
+        this.events[this.$route.params.city] != undefined &&
+        this.$store.state.locale === "_SV"
+      ) {
         let alphabeticalorder = document.querySelector("#alphabetical");
         if (alphabeticalorder.innerHTML === "Bokstavsordning (A-Ö)") {
           this.events[this.$route.params.city].events.sort(this.aZ);
@@ -283,14 +455,34 @@ export default {
           this.events[this.$route.params.city].events.sort(this.zA);
           alphabeticalorder.innerHTML = "Bokstavsordning (A-Ö)";
         }
+      } else if (
+        this.events[this.$route.params.city] != undefined &&
+        this.$store.state.locale === "_EN"
+      ) {
+        let alphabeticalorder = document.querySelector("#alphabetical");
+        if (alphabeticalorder.innerHTML === "Alphabetical (A-Z)") {
+          this.events[this.$route.params.city].events.sort(this.aZ);
+          alphabeticalorder.innerHTML = "Alphabetical (Z-A)";
+        } else {
+          this.events[this.$route.params.city].events.sort(this.zA);
+          alphabeticalorder.innerHTML = "Alphabetical (A-Z)";
+        }
       }
     },
     optionsArrow() {
       let x = document.querySelector("#options");
-      if (x.innerHTML === "Alternativ ▼") {
-        x.innerHTML = "Alternativ ▲";
-      } else {
-        x.innerHTML = "Alternativ ▼";
+      if (this.$store.state.locale === "_SV") {
+        if (x.innerHTML === "Alternativ ▼") {
+          x.innerHTML = "Alternativ ▲";
+        } else {
+          x.innerHTML = "Alternativ ▼";
+        }
+      } else if (this.$store.state.locale === "_EN") {
+        if (x.innerHTML === "Alternatives ▼") {
+          x.innerHTML = "Alternatives ▲";
+        } else {
+          x.innerHTML = "Alternatives ▼";
+        }
       }
     },
     setTitle() {

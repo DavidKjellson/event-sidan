@@ -12,6 +12,14 @@
               >{{ city['name' + $store.state.locale] }}</button>
             </router-link>
           </div>
+          <div>
+            <span :value="$store.state.locale" @click="$store.commit('swedish')">
+              <country-flag country="se" size="big" />
+            </span>
+            <span :value="$store.state.locale" @click="$store.commit('english')">
+              <country-flag country="gb" size="big" />
+            </span>
+          </div>
           <div class="col-md-6 py-4">
             <!-- <h4 class="text-dark">Contact</h4>
               <ul class="list-unstyled">
