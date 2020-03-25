@@ -10,7 +10,9 @@
       :style="{ backgroundImage: 'url(/img/' + events[$route.params.city].hero + ')'}"
       v-if="events[$route.params.city] != undefined"
     >
-      <h3 v-if="events[$route.params.city] != undefined">{{events[$route.params.city].name}}</h3>
+      <h3
+        v-if="events[$route.params.city] != undefined"
+      >{{events[$route.params.city]['name' + $store.state.locale]}}</h3>
     </section>
 
     <!-- CONTAINER FOR EVENT-CARDS -->
@@ -21,13 +23,13 @@
       data-days="3"
       data-theme="pure"
       v-if="events[$route.params.city] != undefined"
-    >{{events[$route.params.city].name}}</a>
+    >{{events[$route.params.city]['name' + $store.state.locale]}}</a>
 
     <div class="container p-3 mb-5 bg-white rounded" style="margin-bottom: 100px;">
       <h3
         class="jumbotron-heading"
         v-if="events[$route.params.city] != undefined"
-      >Aktiviteter i {{events[$route.params.city].name}}</h3>
+      >Aktiviteter i {{events[$route.params.city]['name' + $store.state.locale]}}</h3>
       <div>
         <b-button
           v-b-toggle.collapse-2
