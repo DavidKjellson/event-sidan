@@ -21,18 +21,9 @@
             </span>
           </div>
           <div class="col-md-6 py-4">
-            <!-- <h4 class="text-dark">Contact</h4>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#" class="text-dark">Follow on Twitter</a>
-                </li>
-                <li>
-                  <a href="#" class="text-dark">Like on Facebook</a>
-                </li>
-                <li>
-                  <a href="#" class="text-dark">Email me</a>
-                </li>
-            </ul>-->
+            <router-link :to="'/about'">
+              <h4 class="text-dark">Om oss</h4>
+            </router-link>
           </div>
         </div>
       </div>
