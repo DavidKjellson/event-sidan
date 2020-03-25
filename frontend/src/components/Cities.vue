@@ -201,7 +201,7 @@
             />
             <div class="card-body">
               <h5 class="card-text">{{event.name}}</h5>
-              <p class="card-text">{{event.descriptionshort}}</p>
+              <p class="card-text">{{event['descriptionshort' + $store.state.locale]}}</p>
             </div>
             <ul class="list-group list-group-flush">
               <li
@@ -328,7 +328,7 @@
                         </ul>
                       </div>
                       <div class="col">
-                        <p>{{event.descriptionlong}}</p>
+                        <p>{{event['descriptionlong' + $store.state.locale]}}</p>
                       </div>
                     </div>
                     <div class="row"></div>
