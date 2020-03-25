@@ -1,11 +1,20 @@
 <template>
   <div id="frontpage">
     <h1 id="compname">Activityfy</h1>
+    <div :value="$store.state.locale" @click="$store.commit('swedish')">
+      <country-flag country="se" size="big" />
+    </div>
+    <div :value="$store.state.locale" @click="$store.commit('english')">
+      <country-flag country="gb" size="big" />
+    </div>
     <div class="container-sm">
       <div class="row align-items-center" id="buttonLinks" v-for="city in cities" :key="city.route">
         <div class="col align-self-center">
           <router-link :to="'/cities/'+ city.location">
-            <button type="button" class="btn btn-success btn-lg">{{ city.name }}</button>
+            <button
+              type="button"
+              class="btn btn-success btn-lg"
+            >{{ city['name' + $store.state.locale] }}</button>
           </router-link>
         </div>
       </div>

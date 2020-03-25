@@ -5,7 +5,11 @@
         <div class="row">
           <div v-for="city in cities" :key="city.route">
             <router-link :to="'/cities/'+ city.location">
-              <button type="button" class="btn btn-success" id="button">{{ city.name }}</button>
+              <button
+                type="button"
+                class="btn btn-success"
+                id="button"
+              >{{ city['name' + $store.state.locale] }}</button>
             </router-link>
           </div>
           <div class="col-md-6 py-4">
