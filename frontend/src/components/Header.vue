@@ -18,12 +18,12 @@
               <h4 class="text-dark">Om oss</h4>
             </router-link>
           </div>
-          <div class="col py-1">
-            <span :value="$store.state.locale" @click="$store.commit('swedish')">
-              <country-flag country="se" size="medium" />
+          <div>
+            <span class="flag" :value="$store.state.locale" @click="$store.commit('swedish')">
+              <country-flag class="flag" country="se" size="medium" />
             </span>
             <span :value="$store.state.locale" @click="$store.commit('english')">
-              <country-flag country="gb" size="medium" />
+              <country-flag class="flag" country="gb" size="medium" />
             </span>
           </div>
         </div>
@@ -88,5 +88,9 @@ export default {
 
 .link {
   text-decoration: none;
+}
+
+.flag {
+  cursor: pointer;
 }
 </style>

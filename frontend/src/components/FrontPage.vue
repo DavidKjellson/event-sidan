@@ -2,10 +2,10 @@
   <div id="frontpage">
     <h1 id="compname">Activityfy</h1>
     <span :value="$store.state.locale" @click="$store.commit('swedish')">
-      <country-flag country="se" size="big" />
+      <country-flag class="flag" country="se" size="big" />
     </span>
     <span :value="$store.state.locale" @click="$store.commit('english')">
-      <country-flag country="gb" size="big" />
+      <country-flag class="flag" country="gb" size="big" />
     </span>
     <div class="container-sm">
       <div class="row align-items-center" id="buttonLinks" v-for="city in cities" :key="city.route">
@@ -74,5 +74,9 @@ button {
 
 #compname {
   font-family: "Abel", sans-serif;
+}
+
+.flag {
+  cursor: pointer;
 }
 </style>
