@@ -40,7 +40,7 @@
           v-b-toggle.collapse-2
           class="m-1"
           variant="success"
-          @click="optionsArrow()"
+          @click="optionsArrow"
           id="options"
         >Alternativ ▼</b-button>
         <b-button
@@ -48,7 +48,7 @@
           v-b-toggle.collapse-2
           class="m-1"
           variant="success"
-          @click="optionsArrow()"
+          @click="optionsArrow"
           id="options"
         >Alternatives ▼</b-button>
         <b-collapse id="collapse-2">

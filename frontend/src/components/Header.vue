@@ -15,7 +15,8 @@
 
           <div class="col-sm-8 col-md-7 py-1">
             <router-link class="link" :to="'/about'">
-              <h4 class="text-dark">Om oss</h4>
+              <h4 v-if="$store.state.locale === '_SV'" class="text-dark">Om oss</h4>
+              <h4 v-else class="text-dark">About</h4>
             </router-link>
           </div>
           <div>
