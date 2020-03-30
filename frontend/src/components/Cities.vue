@@ -570,9 +570,15 @@ select:invalid {
 
 @media screen and (max-width: 992px) {
   iframe {
-    width: 75vw;
+    width: 70vw;
     height: 40vh;
     margin: auto;
+  }
+}
+
+@media (width: 768px) {
+  iframe {
+    width: 55vw;
   }
 }
 </style>
