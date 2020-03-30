@@ -21,10 +21,10 @@
           </div>
           <div>
             <span class="flag" :value="$store.state.locale" @click="$store.commit('swedish')">
-              <country-flag class="flag" country="se" size="medium" />
+              <country-flag class="flag" country="se" size="normal" />
             </span>
             <span :value="$store.state.locale" @click="$store.commit('english')">
-              <country-flag class="flag" country="gb" size="medium" />
+              <country-flag class="flag" country="gb" size="normal" />
             </span>
           </div>
         </div>
