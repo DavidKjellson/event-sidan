@@ -15,15 +15,18 @@
 
           <div class="col-sm-8 col-md-7 py-1">
             <router-link class="link" :to="'/about'">
-              <h4 v-if="$store.state.locale === '_SV'" class="text-dark">Om oss</h4>
-              <h4 v-else class="text-dark">About</h4>
+              <h4 class="text-dark">{{ $t('about') }}</h4>
             </router-link>
           </div>
           <div>
-            <span class="flag" :value="$store.state.locale" @click="$store.commit('swedish')">
+            <span
+              class="flag"
+              :value="$store.state.locale"
+              @click="swedish(); $store.commit('swedish')"
+            >
               <country-flag class="flag" country="se" size="normal" />
             </span>
-            <span :value="$store.state.locale" @click="$store.commit('english')">
+            <span :value="$store.state.locale" @click="english(); $store.commit('english')">
               <country-flag class="flag" country="gb" size="normal" />
             </span>
           </div>
@@ -69,6 +72,12 @@ export default {
         .then(result => {
           this.cities = result;
         });
+    },
+    swedish() {
+      this.$i18n.locale = "sv";
+    },
+    english() {
+      this.$i18n.locale = "en";
     }
   }
 };

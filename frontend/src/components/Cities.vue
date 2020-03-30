@@ -28,29 +28,24 @@
     <div class="container p-3 mb-5 bg-white rounded" style="margin-bottom: 100px;">
       <h3
         class="jumbotron-heading"
-        v-if="events[$route.params.city] != undefined && $store.state.locale === '_SV'"
-      >Aktiviteter i {{events[$route.params.city]['name' + $store.state.locale]}}</h3>
-      <h3
-        class="jumbotron-heading"
-        v-if="events[$route.params.city] != undefined && $store.state.locale === '_EN'"
-      >Activities in {{events[$route.params.city]['name' + $store.state.locale]}}</h3>
+        v-if="events[$route.params.city] != undefined"
+      >{{ $t('activities') }} {{events[$route.params.city]['name' + $store.state.locale]}}</h3>
       <div>
         <b-button
-          v-if="$store.state.locale === '_SV'"
           v-b-toggle.collapse-2
           class="m-1"
           variant="success"
-          @click="optionsArrow"
+          @click="newTitle = !newTitle"
           id="options"
-        >Alternativ ▼</b-button>
-        <b-button
+        >{{ newTitle ? $t('altarrowdown') : $t('altarrowup') }}</b-button>
+        <!-- <b-button
           v-else
           v-b-toggle.collapse-2
           class="m-1"
           variant="success"
           @click="optionsArrow"
           id="options"
-        >Alternatives ▼</b-button>
+        >Alternatives ▼</b-button>-->
         <b-collapse id="collapse-2">
           <div class="row">
             <div class="col">
@@ -58,18 +53,9 @@
                 <input
                   class="form-control mr-sm-2"
                   type="search"
-                  placeholder="Sök event"
+                  :placeholder="$t('search')"
                   aria-label="Search"
                   v-model="search"
-                  v-if="$store.state.locale === '_SV'"
-                />
-                <input
-                  class="form-control mr-sm-2"
-                  type="search"
-                  placeholder="Search event"
-                  aria-label="Search"
-                  v-model="search"
-                  v-else
                 />
               </form>
             </div>
@@ -85,12 +71,7 @@
                       v-model="selectedProperty"
                       value="children"
                     />
-                    <label
-                      v-if="$store.state.locale === '_SV'"
-                      class="form-check-label"
-                      for="defaultCheck1"
-                    >Barnanpassat</label>
-                    <label v-else class="form-check-label" for="defaultCheck1">Child adapted</label>
+                    <label class="form-check-label" for="defaultCheck1">{{ $t('children') }}</label>
                   </li>
                   <li>
                     <input
@@ -101,12 +82,7 @@
                       v-model="selectedProperty"
                       value="food"
                     />
-                    <label
-                      v-if="$store.state.locale === '_SV'"
-                      class="form-check-label"
-                      for="defaultCheck1"
-                    >Mat & Dryck</label>
-                    <label v-else class="form-check-label" for="defaultCheck1">Food & Drinks</label>
+                    <label class="form-check-label" for="defaultCheck1">{{ $t('food') }}</label>
                   </li>
                 </ul>
                 <ul class="filters">
@@ -119,12 +95,7 @@
                       v-model="selectedProperty"
                       value="accommodation"
                     />
-                    <label
-                      v-if="$store.state.locale === '_SV'"
-                      class="form-check-label"
-                      for="defaultCheck1"
-                    >Boende</label>
-                    <label v-else class="form-check-label" for="defaultCheck1">Accommodation</label>
+                    <label class="form-check-label" for="defaultCheck1">{{ $t('accommodation') }}</label>
                   </li>
                   <li>
                     <input
@@ -135,23 +106,15 @@
                       v-model="selectedProperty"
                       value="parking"
                     />
-                    <label
-                      v-if="$store.state.locale === '_SV'"
-                      class="form-check-label"
-                      for="defaultCheck1"
-                    >Parkering</label>
-                    <label v-else class="form-check-label" for="defaultCheck1">Parking</label>
+                    <label class="form-check-label" for="defaultCheck1">{{ $t('parking') }}</label>
                   </li>
                 </ul>
               </div>
             </div>
             <div class="col">
               <ul style="list-style-type: none;">
-                <li v-if="$store.state.locale === '_SV'">
-                  <strong>Sortering</strong>
-                </li>
-                <li v-else>
-                  <strong>Sorting</strong>
+                <li>
+                  <strong>{{ $t('sort') }}</strong>
                 </li>
                 <li
                   v-if="$store.state.locale === '_SV'"
@@ -192,40 +155,18 @@
               <p class="card-text">{{event['descriptionshort' + $store.state.locale]}}</p>
             </div>
             <ul class="list-group list-group-flush">
-              <li
-                v-if="$store.state.locale === '_SV'"
-                class="list-group-item"
-              >Öppetider: {{event.openinghours}}</li>
-              <li v-else class="list-group-item">Open: {{event.openinghours}}</li>
-              <li
-                v-if="$store.state.locale === '_SV'"
-                class="list-group-item"
-              >Inträde: {{event.entrance}} SEK</li>
-              <li v-else class="list-group-item">Entrance: {{event.entrance}} SEK</li>
-              <li
-                v-if="$store.state.locale === '_SV'"
-                class="list-group-item"
-              >Hållplats: {{event.stop}}</li>
-              <li v-else class="list-group-item">Stop: {{event.stop}}</li>
-              <li
-                v-if="$store.state.locale === '_SV'"
-                class="list-group-item"
-              >Barnanpassat: {{event.children | yesno}}</li>
-              <li v-else class="list-group-item">Child adapted: {{event.children | yesno}}</li>
+              <li class="list-group-item">{{ $t('open') }}: {{event.openinghours}}</li>
+              <li class="list-group-item">{{ $t('entrance') }}: {{event.entrance}} SEK</li>
+              <li class="list-group-item">{{ $t('stop') }}: {{event.stop}}</li>
+              <li class="list-group-item">{{ $t('children') }}: {{event.children | yesno}}</li>
             </ul>
             <div class="card-body">
               <div>
                 <!-- Modal -->
                 <b-button
-                  v-if="$store.state.locale === '_SV'"
                   v-b-modal="'modal-' + event.name"
                   class="btn bg-success text-white my-2 my-sm-0"
-                >Mer information</b-button>
-                <b-button
-                  v-else
-                  v-b-modal="'modal-' + event.name"
-                  class="btn bg-success text-white my-2 my-sm-0"
-                >More information</b-button>
+                >{{ $t('moreinfo') }}</b-button>
 
                 <b-modal
                   :id="'modal-' + event.name"
@@ -248,47 +189,17 @@
                       </div>
                       <div class="col">
                         <ul class="list-group list-group-flush">
+                          <li class="list-group-item">{{ $t('open') }}: {{event.openinghours}}</li>
+                          <li class="list-group-item">{{ $t('entrance') }}: {{event.entrance}} SEK</li>
+                          <li class="list-group-item">{{ $t('stop') }}: {{event.stop}}</li>
                           <li
-                            v-if="$store.state.locale === '_SV'"
                             class="list-group-item"
-                          >Öppetider: {{event.openinghours}}</li>
-                          <li v-else class="list-group-item">Open: {{event.openinghours}}</li>
+                          >{{ $t('children') }}: {{event.children | yesno}}</li>
+                          <li class="list-group-item">{{ $t('food') }}: {{event.food | yesno}}</li>
                           <li
-                            v-if="$store.state.locale === '_SV'"
                             class="list-group-item"
-                          >Inträde: {{event.entrance}} SEK</li>
-                          <li v-else class="list-group-item">Entrance: {{event.entrance}} SEK</li>
-                          <li
-                            v-if="$store.state.locale === '_SV'"
-                            class="list-group-item"
-                          >Hållplats: {{event.stop}}</li>
-                          <li v-else class="list-group-item">Stop: {{event.stop}}</li>
-                          <li
-                            v-if="$store.state.locale === '_SV'"
-                            class="list-group-item"
-                          >Barnanpassat: {{event.children | yesno}}</li>
-                          <li
-                            v-else
-                            class="list-group-item"
-                          >Child adapted: {{event.children | yesno}}</li>
-                          <li
-                            v-if="$store.state.locale === '_SV'"
-                            class="list-group-item"
-                          >Mat & Dryck: {{event.food | yesno}}</li>
-                          <li v-else class="list-group-item">Food & Drink: {{event.food | yesno}}</li>
-                          <li
-                            v-if="$store.state.locale === '_SV'"
-                            class="list-group-item"
-                          >Boende: {{event.accommodation | yesno}}</li>
-                          <li
-                            v-else
-                            class="list-group-item"
-                          >Accommodation: {{event.accommodation | yesno}}</li>
-                          <li
-                            v-if="$store.state.locale === '_SV'"
-                            class="list-group-item"
-                          >Parkering: {{event.parking | yesno}}</li>
-                          <li v-else class="list-group-item">Parking: {{event.parking | yesno}}</li>
+                          >{{ $t('accommodation') }}: {{event.accommodation | yesno}}</li>
+                          <li class="list-group-item">{{ $t('parking') }}: {{event.parking | yesno}}</li>
                         </ul>
                       </div>
                       <div class="col">
@@ -334,7 +245,8 @@ export default {
       search: "",
       API_KEY: secret.API_KEY,
       selected: [],
-      selectedProperty: []
+      selectedProperty: [],
+      newTitle: true
     };
   },
   props: {
@@ -456,6 +368,12 @@ export default {
             "name" + this.$store.state.locale
           ] + " - Activitify";
       }
+    },
+    swedish() {
+      this.$i18n.locale = "sv";
+    },
+    english() {
+      this.$i18n.locale = "en";
     }
   },
   computed: {

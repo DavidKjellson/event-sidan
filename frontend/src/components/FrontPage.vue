@@ -1,10 +1,10 @@
 <template>
   <div id="frontpage">
     <h1 id="compname">Activityfy</h1>
-    <span :value="$store.state.locale" @click="$store.commit('swedish')">
+    <span :value="$store.state.locale" @click="swedish(); $store.commit('swedish')">
       <country-flag class="flag" country="se" size="big" />
     </span>
-    <span :value="$store.state.locale" @click="$store.commit('english')">
+    <span :value="$store.state.locale" @click="english(); $store.commit('english')">
       <country-flag class="flag" country="gb" size="big" />
     </span>
     <div class="container-sm">
@@ -41,6 +41,12 @@ export default {
           console.log(result);
           this.cities = result;
         });
+    },
+    swedish() {
+      this.$i18n.locale = "sv";
+    },
+    english() {
+      this.$i18n.locale = "en";
     }
   }
 };
