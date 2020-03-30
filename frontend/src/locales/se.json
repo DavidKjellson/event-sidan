@@ -15,5 +15,9 @@
   "stop": "Hållplats",
   "moreinfo": "Mer information",
   "altarrowdown": "Alternativ ▼",
-  "altarrowup": "Alternativ ▲"
+  "altarrowup": "Alternativ ▲",
+  "pricearrowup": "Pris ↑",
+  "pricearrowdown": "Pris ↓",
+  "a-z": "Bokstavsordning (A-Ö)",
+  "z-a": "Bokstavsordning (Ö-A)"
 }

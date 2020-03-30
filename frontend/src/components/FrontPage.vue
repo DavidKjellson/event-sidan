@@ -38,7 +38,6 @@ export default {
       fetch("http://localhost:3000")
         .then(response => response.json())
         .then(result => {
-          console.log(result);
           this.cities = result;
         });
     },

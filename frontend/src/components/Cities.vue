@@ -35,17 +35,8 @@
           v-b-toggle.collapse-2
           class="m-1"
           variant="success"
-          @click="newTitle = !newTitle"
-          id="options"
-        >{{ newTitle ? $t('altarrowdown') : $t('altarrowup') }}</b-button>
-        <!-- <b-button
-          v-else
-          v-b-toggle.collapse-2
-          class="m-1"
-          variant="success"
-          @click="optionsArrow"
-          id="options"
-        >Alternatives ▼</b-button>-->
+          @click="options = !options"
+        >{{ options ? $t('altarrowdown') : $t('altarrowup') }}</b-button>
         <b-collapse id="collapse-2">
           <div class="row">
             <div class="col">
@@ -117,24 +108,13 @@
                   <strong>{{ $t('sort') }}</strong>
                 </li>
                 <li
-                  v-if="$store.state.locale === '_SV'"
-                  @click="entranceSort"
+                  @click="entranceSort(); numberedorder = !numberedorder"
                   class="sort"
-                  id="price"
-                >Pris ↑</li>
-                <li v-else @click="entranceSort" class="sort" id="price">Price ↑</li>
+                >{{ numberedorder ? $t('pricearrowup') : $t('pricearrowdown') }}</li>
                 <li
-                  v-if="$store.state.locale === '_SV'"
-                  @click="alphabeticalSort"
+                  @click="alphabeticalSort(); alphabetical = !alphabetical"
                   class="sort"
-                  id="alphabetical"
-                >Bokstavsordning (A-Ö)</li>
-                <li
-                  v-else
-                  @click="alphabeticalSort"
-                  class="sort"
-                  id="alphabetical"
-                >Alphabetical (A-Z)</li>
+                >{{ alphabetical ? $t('a-z') : $t('z-a') }}</li>
               </ul>
             </div>
           </div>
@@ -246,7 +226,9 @@ export default {
       API_KEY: secret.API_KEY,
       selected: [],
       selectedProperty: [],
-      newTitle: true
+      options: true,
+      numberedorder: true,
+      alphabetical: true
     };
   },
   props: {
@@ -275,7 +257,6 @@ export default {
       fetch("http://localhost:3000")
         .then(response => response.json())
         .then(result => {
-          console.log(result);
           this.events = result;
         });
     },
@@ -292,72 +273,20 @@ export default {
       return ("" + b.name).localeCompare(a.name);
     },
     entranceSort() {
-      if (
-        this.events[this.$route.params.city] != undefined &&
-        this.$store.state.locale === "_SV"
-      ) {
-        let numberedorder = document.querySelector("#price");
-        if (numberedorder.innerHTML === "Pris ↑") {
+      if (this.events[this.$route.params.city] != undefined) {
+        if (this.numberedorder) {
           this.events[this.$route.params.city].events.sort(this.lowestHighest);
-          numberedorder.innerHTML = "Pris ↓";
         } else {
           this.events[this.$route.params.city].events.sort(this.highestLowest);
-          numberedorder.innerHTML = "Pris ↑";
-        }
-      } else if (
-        this.events[this.$route.params.city] != undefined &&
-        this.$store.state.locale === "_EN"
-      ) {
-        let numberedorder = document.querySelector("#price");
-        if (numberedorder.innerHTML === "Price ↑") {
-          this.events[this.$route.params.city].events.sort(this.lowestHighest);
-          numberedorder.innerHTML = "Price ↓";
-        } else {
-          this.events[this.$route.params.city].events.sort(this.highestLowest);
-          numberedorder.innerHTML = "Price ↑";
         }
       }
     },
     alphabeticalSort() {
-      if (
-        this.events[this.$route.params.city] != undefined &&
-        this.$store.state.locale === "_SV"
-      ) {
-        let alphabeticalorder = document.querySelector("#alphabetical");
-        if (alphabeticalorder.innerHTML === "Bokstavsordning (A-Ö)") {
+      if (this.events[this.$route.params.city] != undefined) {
+        if (this.alphabetical) {
           this.events[this.$route.params.city].events.sort(this.aZ);
-          alphabeticalorder.innerHTML = "Bokstavsordning (Ö-A)";
         } else {
           this.events[this.$route.params.city].events.sort(this.zA);
-          alphabeticalorder.innerHTML = "Bokstavsordning (A-Ö)";
-        }
-      } else if (
-        this.events[this.$route.params.city] != undefined &&
-        this.$store.state.locale === "_EN"
-      ) {
-        let alphabeticalorder = document.querySelector("#alphabetical");
-        if (alphabeticalorder.innerHTML === "Alphabetical (A-Z)") {
-          this.events[this.$route.params.city].events.sort(this.aZ);
-          alphabeticalorder.innerHTML = "Alphabetical (Z-A)";
-        } else {
-          this.events[this.$route.params.city].events.sort(this.zA);
-          alphabeticalorder.innerHTML = "Alphabetical (A-Z)";
-        }
-      }
-    },
-    optionsArrow() {
-      let x = document.querySelector("#options");
-      if (this.$store.state.locale === "_SV") {
-        if (x.innerHTML === "Alternativ ▼") {
-          x.innerHTML = "Alternativ ▲";
-        } else {
-          x.innerHTML = "Alternativ ▼";
-        }
-      } else if (this.$store.state.locale === "_EN") {
-        if (x.innerHTML === "Alternatives ▼") {
-          x.innerHTML = "Alternatives ▲";
-        } else {
-          x.innerHTML = "Alternatives ▼";
         }
       }
     },

@@ -15,5 +15,9 @@
   "stop": "Stop",
   "moreinfo": "More information",
   "altarrowdown": "Alternatives ▼",
-  "altarrowup": "Alternatives ▲"
+  "altarrowup": "Alternatives ▲",
+  "pricearrowup": "Price ↑",
+  "pricearrowdown": "Price ↓",
+  "a-z": "Alphabetical (A-Z)",
+  "z-a": "Alphabetical (Z-A)"
 }
