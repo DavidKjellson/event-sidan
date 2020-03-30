@@ -140,9 +140,9 @@
           </div>
         </b-collapse>
       </div>
-      <div class="row">
-        <div class="col" :key="event.name" v-for="event in filteredProperties">
-          <div class="card shadow mt-3" style="width: 18rem;">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-4" :key="event.name" v-for="event in filteredProperties">
+          <div class="card shadow mt-3">
             <img
               :src="'/img/' + event.img"
               class="card-img-top"
@@ -202,7 +202,7 @@
                           <li class="list-group-item">{{ $t('parking') }}: {{event.parking | yesno}}</li>
                         </ul>
                       </div>
-                      <div class="col">
+                      <div class="col-md-4">
                         <p>{{event['descriptionlong' + $store.state.locale]}}</p>
                       </div>
                     </div>
@@ -421,9 +421,9 @@ export default {
 </script>
 
 <style scoped>
-.card {
+/* .card {
   margin: auto;
-}
+} */
 h3 {
   margin-bottom: 20px;
 }
@@ -488,9 +488,15 @@ select:invalid {
 
 @media screen and (max-width: 992px) {
   iframe {
-    width: 75vw;
+    width: 70vw;
     height: 40vh;
     margin: auto;
+  }
+}
+
+@media (width: 768px) {
+  iframe {
+    width: 55vw;
   }
 }
 </style>
