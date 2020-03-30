@@ -291,7 +291,7 @@
                           <li v-else class="list-group-item">Parking: {{event.parking | yesno}}</li>
                         </ul>
                       </div>
-                      <div class="col">
+                      <div class="col-md-4">
                         <p>{{event['descriptionlong' + $store.state.locale]}}</p>
                       </div>
                     </div>
