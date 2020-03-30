@@ -334,16 +334,6 @@ export default {
         }
       }
       return [];
-    },
-    filterSearch() {
-      if (this.events[this.$route.params.city] != undefined) {
-        return this.events[this.$route.params.city].events.filter(event => {
-          return (
-            event.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
-          );
-        });
-      }
-      return [];
     }
   }
 };
