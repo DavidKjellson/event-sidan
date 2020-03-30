@@ -177,9 +177,9 @@
           </div>
         </b-collapse>
       </div>
-      <div class="row">
-        <div class="col" :key="event.name" v-for="event in filteredProperties">
-          <div class="card shadow mt-3" style="width: 18rem;">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-4" :key="event.name" v-for="event in filteredProperties">
+          <div class="card shadow mt-3">
             <img
               :src="'/img/' + event.img"
               class="card-img-top"
@@ -503,9 +503,9 @@ export default {
 </script>
 
 <style scoped>
-.card {
+/* .card {
   margin: auto;
-}
+} */
 h3 {
   margin-bottom: 20px;
 }
