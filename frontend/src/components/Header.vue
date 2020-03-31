@@ -3,7 +3,7 @@
     <div class="collapse bg-transparent" id="navbarHeader">
       <div class="container">
         <div class="row">
-          <div v-for="city in cities" :key="city.route">
+          <div class="pr-1" v-for="city in cities" :key="city.route">
             <router-link :to="'/cities/'+ city.location">
               <button
                 type="button"
@@ -13,12 +13,12 @@
             </router-link>
           </div>
 
-          <div class="col-sm-8 col-md-7 py-1">
+          <div class="col mt-2">
             <router-link class="link" :to="'/about'">
               <h4 class="text-dark">{{ $t('about') }}</h4>
             </router-link>
           </div>
-          <div>
+          <div class="col mt-2">
             <span
               class="flag"
               :value="$store.state.locale"
@@ -91,8 +91,8 @@ export default {
 
 #button {
   margin-top: 5px;
-  margin-right: 10px;
-  padding: 2px;
+  /* margin-right: 10px; */
+  /* padding: 2px; */
   width: 100px;
 }
 
@@ -102,5 +102,15 @@ export default {
 
 .flag {
   cursor: pointer;
+}
+
+@media screen and (max-width: 992px) {
+  .text-dark {
+    font-size: 20px;
+  }
+
+  span {
+    float: left;
+  }
 }
 </style>
