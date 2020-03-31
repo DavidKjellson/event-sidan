@@ -159,7 +159,7 @@
                     <div class="row">
                       <div class="col">
                         <iframe
-                          width="350"
+                          width="400"
                           height="350"
                           frameborder="0"
                           style="border:0"
