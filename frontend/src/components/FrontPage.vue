@@ -1,12 +1,14 @@
 <template>
   <div id="frontpage">
-    <h1 id="compname">Activityfy</h1>
-    <span :value="$store.state.locale" @click="swedish(); $store.commit('swedish')">
-      <country-flag class="flag" country="se" size="big" />
-    </span>
     <span :value="$store.state.locale" @click="english(); $store.commit('english')">
-      <country-flag class="flag" country="gb" size="big" />
+      <country-flag class="flag" country="gb" size="normal" />
     </span>
+    <span :value="$store.state.locale" @click="swedish(); $store.commit('swedish')">
+      <country-flag class="flag" country="se" size="normal" />
+    </span>
+
+    <h1 id="compname">Activityfy</h1>
+
     <div class="container-sm">
       <div class="row align-items-center" id="buttonLinks" v-for="city in cities" :key="city.route">
         <div class="col align-self-center">
@@ -83,5 +85,10 @@ button {
 
 .flag {
   cursor: pointer;
+}
+
+span {
+  float: right;
+  margin-right: 5px;
 }
 </style>
