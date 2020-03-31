@@ -340,9 +340,6 @@ export default {
 </script>
 
 <style scoped>
-/* .card {
-  margin: auto;
-} */
 h3 {
   margin-bottom: 20px;
 }
