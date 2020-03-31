@@ -180,6 +180,9 @@
                             class="list-group-item"
                           >{{ $t('accommodation') }}: {{event.accommodation | yesno}}</li>
                           <li class="list-group-item">{{ $t('parking') }}: {{event.parking | yesno}}</li>
+                          <li class="list-group-item">
+                            <a :href="event.websitelong">{{event.websiteshort}}</a>
+                          </li>
                         </ul>
                       </div>
                       <div class="col-md-4">
